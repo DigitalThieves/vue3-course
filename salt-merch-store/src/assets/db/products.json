@@ -1,0 +1,105 @@
+[
+  {
+    "slug": "one-size-baseball",
+    "category": "hat",
+    "colors": [{
+      "color_name": "Black Melange",
+      "colorhex": "#000",
+      "sizes": [{
+        "size": "one-size",
+        "stock": 3
+      }],
+      "images": [
+        "images/salt-store-items/hat/01.jpg",
+        "images/salt-store-items/hat/02.jpg"
+      ]
+    }],
+    "title": "One Size Baseball Hat",
+    "description": "Salt makes awesome baseball caps. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
+  },
+  {
+    "slug": "tshirt-salty",
+    "category": "t-shirt",
+    "colors": [
+      {
+        "color_name": "Psyche Blue",
+        "colorhex": "#00f",
+        "sizes": [
+          {
+            "size": "S",
+            "stock": 1
+          }, {
+            "size": "M",
+            "stock": 0
+          }, {
+            "size": "L",
+            "stock": 0
+          }, {
+            "size": "XL",
+            "stock": 1
+          }, {
+            "size": "XXL",
+            "stock": 3
+          }
+        ],
+        "images": [
+          "images/salt-store-items/t-shirt/psyche-01.jpg"
+        ]
+      }, {
+        "color_name": "Black",
+        "colorhex": "#000",
+        "sizes": [
+          {
+            "size": "S",
+            "stock": 1
+          }, {
+            "size": "M",
+            "stock": 1
+          }, {
+            "size": "L",
+            "stock": 2
+          }, {
+            "size": "XL",
+            "stock": 5
+          }, {
+            "size": "XXL",
+            "stock": 3
+          }
+        ],
+        "images": [
+          "images/salt-store-items/t-shirt/black-01.jpg",
+          "images/salt-store-items/t-shirt/black-02.jpg",
+          "images/salt-store-items/t-shirt/black-03.jpg",
+          "images/salt-store-items/t-shirt/black-04.jpg"
+        ]
+      }, {
+        "color_name": "White",
+        "colorhex": "#fff",
+        "sizes": [
+          {
+            "size": "S",
+            "stock": 1
+          }, {
+            "size": "M",
+            "stock": 1
+          }, {
+            "size": "L",
+            "stock": 2
+          }, {
+            "size": "XL",
+            "stock": 5
+          }, {
+            "size": "XXL",
+            "stock": 0
+          }
+        ],
+        "images": [
+          "images/salt-store-items/t-shirt/white-01.jpg",
+          "images/salt-store-items/t-shirt/white-02.jpg"
+        ]
+      }
+    ],
+    "title": "Salty T-Shirt",
+    "description": "Salt makes awesome T-Shirts. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
+  }
+]
