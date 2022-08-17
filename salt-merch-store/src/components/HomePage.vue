@@ -1,8 +1,11 @@
 <template>
   <div class="container p-0">
     <picture-overlayed-with-text>
-      <template v-slot:overlay>
-        <div class="position-absolute w-100 h-100 bg-secondary" style="top: 0%; left: 0%; opacity:0.5;" />
+      <template #overlay>
+        <div
+          class="position-absolute w-100 h-100 bg-secondary"
+          style="top: 0%; left: 0%; opacity:0.5;"
+        />
       </template>
       <div class="text-white text-center">
         <h2>
@@ -11,9 +14,14 @@
         <h1 class="title-1 fw-bold mb-3">
           Salt Merch
         </h1>
-        <button class="bg-white px-5 py-3">
-          SHOP THE COLLECTION
-        </button>
+        <router-link
+          class="text-decoration-none text-dark"
+          to="/collection"
+        >
+          <button class="bg-white px-5 py-3">
+            SHOP THE COLLECTION
+          </button>
+        </router-link>
       </div>
     </picture-overlayed-with-text>
     <div class="row">

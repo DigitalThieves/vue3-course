@@ -23,10 +23,23 @@
             {{ item.title }} / {{ item.colors[0].color_name }} / 
             <span class="text-capitalize">{{ item.colors[0].sizes[0].size }}</span>
           </router-link>
-          <div class="cart-item-quantity">
-            <button @click="removeQuantity(item)" :class="buttonSize">-</button>
-            <span :class="quantitySize"> Qty: {{ item.quantity }} </span>
-            <button @click="addQuantity(item)" :class="buttonSize">+</button>
+          <div
+            class="cart-item-quantity"
+            :class="quantitySize"
+          >
+            <button
+              :class="buttonSize"
+              @click="removeQuantity(item)"
+            >
+              -
+            </button>
+            <span> Qty: {{ item.quantity }} </span>
+            <button
+              :class="buttonSize"
+              @click="addQuantity(item)"
+            >
+              +
+            </button>
           </div>
         </div>
       </li>
@@ -89,16 +102,7 @@ export default {
       }
     },
     quantitySize () {
-      switch (this.size) {
-        case 's':
-          return 'px-1'
-        case 'm':
-        case 'l':
-        case 'xl':
-          return 'px-3'
-        default:
-          return 'px-1'
-      }
+      return this.size
     },
   },
   methods: {
@@ -123,5 +127,14 @@ ul {
   height: 24px;
   margin-right: 6px;
   object-fit: cover;
+}
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  width: 160px;
+  justify-content: space-between;
+}
+.cart-item-quantity.s {
+  width: 90px;
 }
 </style>

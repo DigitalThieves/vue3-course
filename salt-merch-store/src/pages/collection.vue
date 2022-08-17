@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="category"
+    v-if="collection"
     class="container"
   >
     <div class="row">
@@ -11,23 +11,17 @@
             to="/"
           >
             SALT MERCH
-          </router-link> /
-          <router-link
-            class="text-decoration-none text-dark"
-            :to="'/categories/' + category.category"
-          >
-            {{ category.category }}
           </router-link>
         </p>
       </div>
       <div class="col-12 px-5">
         <h2>
-          {{ category.title }}
+          Timeless Love
         </h2>
-        <p> {{ category.description }} </p>
+        <p> Our Complete Collection </p>
       </div>
     </div>
-    <collection-view :collection="category.products" />
+    <collection-view :collection="collection" />
   </div>
   <div
     v-else
@@ -51,18 +45,18 @@ export default {
   components: {
     CollectionView
   },
-  async beforeRouteUpdate(to, _, next) {
-    this.category = null
-    this.category = await client.getProductsByCategory(to.params.category)
+  async beforeRouteUpdate(_, __, next) {
+    this.collection = null
+    this.collection = await client.getAllProducts()
     next()
   },
   data () {
     return {
-      category: null
+      collection: null
     }
   },
   async mounted () {
-    this.category = await client.getProductsByCategory(this.$route.params.category)
+    this.collection = await client.getAllProducts()
   },
 }
 </script>

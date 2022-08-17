@@ -14,10 +14,16 @@ const store = createStore({
     ADD_ITEM (state, newItem) {
       let prev_item = state.cart.filter(el => el.slug == newItem.slug && el.colors[0].color_name == newItem.colors[0].color_name && el.colors[0].sizes[0].size == newItem.colors[0].sizes[0].size )[0]
       if (!prev_item)
-        prev_item = { ...newItem, quantity: 1 }
+        state.cart.push({ ...newItem, quantity: 1 })
       else
         prev_item.quantity++
-      state.cart = [ ...state.cart.filter(el => el.slug != newItem.slug || el.colors[0].color_name != newItem.colors[0].color_name || el.colors[0].sizes[0].size != newItem.colors[0].sizes[0].size), prev_item ]
+
+      state.cart.sort(
+        (a, b) =>
+          a.title.localeCompare(b.title) +
+          a.colors[0].color_name.localeCompare( b.colors[0].color_name ) +
+          a.colors[0].sizes[0].size.localeCompare( b.colors[0].sizes[0].size) )
+
       localStorage.setItem(storageKey, JSON.stringify(state.cart))
     },
     REMOVE_ITEM (state, newItem) {
@@ -29,8 +35,8 @@ const store = createStore({
       const rest = state.cart.filter(el => el.slug != newItem.slug || el.colors[0].color_name != newItem.colors[0].color_name || el.colors[0].sizes[0].size != newItem.colors[0].sizes[0].size)
       if (!prev_item.quantity)
         state.cart = [ ...rest ]
-      else
-        state.cart = [ ...rest, prev_item ]
+      // else
+      //   state.cart = [ ...rest, prev_item ]
       localStorage.setItem(storageKey, JSON.stringify(state.cart))
     }
   },

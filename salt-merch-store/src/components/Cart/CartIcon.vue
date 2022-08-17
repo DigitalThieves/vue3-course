@@ -12,6 +12,12 @@
         />
       </svg>
     </router-link>
+    <div
+      v-if="$store.state.cart.length"
+      class="position-absolute cart-icon-number d-flex align-items-center justify-content-center text-center"
+    >
+      {{ amount_of_products }}
+    </div>
     <div class="position-absolute cart-icon-list bg-white">
       <br>
       <cart-list />
@@ -25,7 +31,16 @@ import CartList from './CartList'
 export default {
   components: {
     CartList
-  }
+  },
+  computed: {
+    amount_of_products () {
+      const cart = this.$store.state.cart
+      let amount = 0;
+      for (let i = 0; i < cart.length; i++ )
+        amount += cart[i].quantity
+      return amount
+    }
+  },
 }
 
 </script>
@@ -48,5 +63,15 @@ export default {
   height: 200px;
   border: 1px solid lightgrey;
   border-radius: 4px;
+}
+.cart-icon-number {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: .75rem;
+  /* color: white; */
+  background: rgb(240, 240, 240);
+  left: 15px;
+  top: 15px;
 }
 </style>

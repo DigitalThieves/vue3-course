@@ -9,6 +9,13 @@ export default {
         250
       )
     ),
+  getAllProducts: () =>
+    new Promise(res =>
+      setTimeout(
+        () => res( products ),
+        250
+      )
+    ),
   getProductsByCategory: category_slug =>
     new Promise(res =>
       setTimeout(
