@@ -7,6 +7,7 @@ import { createRouter, createWebHistory } from 'vue-router';   // map from 'vue-
 import home from './pages/home.vue';
 import products from './pages/products.vue';
 import categories from './pages/categories.vue';
+import cartpage from './pages/cart-page.vue';
 
 
 const routes = [
@@ -21,9 +22,14 @@ const routes = [
     name: 'products'
   },
   {
-    path: '/categories/:slug',
+    path: '/categories/:category',
     component: categories,
     name: 'categories'
+  },
+  {
+    path: '/cart',
+    component: cartpage,
+    name: 'cartpage'
   },
 ];
 
@@ -32,7 +38,12 @@ const router = createRouter({
   routes
 });
 
-// router.beforeEach(async (to, from, next) => {
-// });
+
+router.beforeEach(() => {
+  // Scroll page to top on every route change
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 100);
+});
 
 export default router

@@ -7,12 +7,30 @@
     <div class="row text-left">
       <div class="col-12">
         <p class="text-uppercase fs-12 fw-semibold">
-          SALT MERCH / {{ product.category }} / {{ product.title }}
+          <router-link
+            class="text-decoration-none text-dark"
+            to="/"
+          >
+            SALT MERCH
+          </router-link> /
+          <router-link
+            class="text-decoration-none text-dark"
+            :to="'/categories/' + product.category"
+          >
+            {{ product.category }}
+          </router-link> /
+          <router-link
+            class="text-decoration-none text-dark"
+            :to="'/products/' + product.slug"
+          >
+            {{ product.title }}
+          </router-link>
         </p>
       </div>
       <div class="col-4">
-        <transitionGroup
+        <transition-group
           name="fade"
+          mode="out-in"
           tag="div"
         >
           <img
@@ -21,7 +39,7 @@
             :src="image"
             class="selected-product-img"
           >
-        </transitionGroup>
+        </transition-group>
         <br>
         <br>
         <img
@@ -38,8 +56,9 @@
         </h1>
         <p>
           {{ currentColor.color_name }} /
-          <span v-if="currentSize.stock"> Stock: {{ currentSize.stock }} </span>
-          <span v-else> Out of stock </span>
+          <span v-if="sizeIndex !== null && currentSize.stock"> Stock: {{ currentSize.stock }} </span>
+          <span v-else-if="sizeIndex !== null"> Out of stock </span>
+          <span v-else> No size chosen </span>
         </p>
         <hr class="my-3">
         <div
@@ -49,6 +68,26 @@
           :style="'background-color: ' + color.colorhex + ';'"
           @click="colorIndex = i"
         />
+        <br>
+        <br>
+        <div
+          v-for="size, i in currentColor.sizes"
+          :key="size.size"
+          class="selectable-product-sizes border text-center px-3 py-2"
+          :style="sizeStyle(size, i)"
+          @click="size.stock ? sizeIndex = i : null"
+        >
+          {{ size.size }}
+        </div>
+        <br>
+        <br>
+        <button
+          class="px-5 py-3"
+          :disabled="sizeIndex == null"
+          @click="addItem"
+        >
+          Add {{ product.title }} To Cart
+        </button>
         <hr class="my-3">
         <p>
           {{ product.description }}
@@ -77,12 +116,17 @@ export default {
   components: {
     // HomePage
   },
+  async beforeRouteUpdate(to, _, next) {
+    this.products = null
+    this.product = await client.getProductBySlug(to.params.slug)
+    next()
+  },
   data () {
     return {
       product: null,
       colorIndex: 0,
       imgIndex: 0,
-      sizeIndex: 0,
+      sizeIndex: null,
     }
   },
   computed: {
@@ -102,11 +146,29 @@ export default {
   watch: {
     colorIndex () {
       this.imgIndex = 0
-      this.sizeIndex = 0
+      this.sizeIndex = null
     }
   },
   async mounted () {
     this.product = await client.getProductBySlug(this.$route.params.slug)
+  },
+  methods: {
+    addItem () {
+      this.$store.dispatch('addItem', {
+        ...this.product,
+        colors: [
+          {
+            ...this.currentColor,
+            sizes: [ this.currentSize ]
+          }
+        ]
+      })
+    },
+    sizeStyle (size, i) {
+      return i === this.sizeIndex ? 'background-color: black; color: white' : (
+        size.stock ? '' : 'background-color: lightgrey; cursor: default !important;'
+      )
+    }
   }
 }
 </script>
@@ -122,9 +184,8 @@ export default {
   width: 100%;
 }
 .selectable-product-imgs,
+.selectable-product-sizes,
 .selectable-product-colors {
-  height: 100px;
-  width: 75px;
   display: inline-block;
   margin-right: 10px;
   cursor: pointer;
@@ -136,17 +197,5 @@ export default {
 .selectable-product-colors {
   height: 50px;
   width: 37px;
-}
-.fs-12 {
-  font-size: .7rem;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

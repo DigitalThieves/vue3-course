@@ -1,7 +1,7 @@
 [
   {
     "slug": "one-size-baseball",
-    "category": "hat",
+    "category": "hats",
     "colors": [{
       "color_name": "Black Melange",
       "colorhex": "#000",
@@ -16,10 +16,9 @@
     }],
     "title": "One Size Baseball Hat",
     "description": "Salt makes awesome baseball caps. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
-  },
-  {
+  }, {
     "slug": "tshirt-salty",
-    "category": "t-shirt",
+    "category": "tshirts",
     "colors": [
       {
         "color_name": "Psyche Blue",
@@ -101,5 +100,76 @@
     ],
     "title": "Salty T-Shirt",
     "description": "Salt makes awesome T-Shirts. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
+  }, {
+    "slug": "salty-black-jacket",
+    "category": "jackets",
+    "colors": [
+      {
+        "color_name": "Salty Black",
+        "colorhex": "#000",
+        "sizes": [
+          {
+            "size": "S",
+            "stock": 1
+          }, {
+            "size": "M",
+            "stock": 0
+          }, {
+            "size": "L",
+            "stock": 0
+          }, {
+            "size": "XL",
+            "stock": 1
+          }, {
+            "size": "XXL",
+            "stock": 3
+          }
+        ],
+        "images": [
+          "images/salt-store-items/jacket/01.jpg",
+          "images/salt-store-items/jacket/02.jpg"
+        ]
+      }
+    ],
+    "title": "Salty Jacket",
+    "description": "Salt makes awesome Jackets. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
+  }, {
+    "slug": "baggie-salt-shopping-bag",
+    "category": "bags",
+    "colors": [
+      {
+        "color_name": "Baggie Salt Black",
+        "colorhex": "#000",
+        "sizes": [{
+          "size": "one-size",
+          "stock": 3
+        }],
+        "images": [
+          "images/salt-store-items/shopping-bag/01.jpg"
+        ]
+      }
+    ],
+    "title": "Baggie Salt Shopping Bag",
+    "description": "Salt makes awesome Shopping Bags. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
+  }, {
+    "slug": "baggie-salt-laptop-bag",
+    "category": "bags",
+    "colors": [
+      {
+        "color_name": "Baggie Salt Black",
+        "colorhex": "#000",
+        "sizes": [
+          {
+            "size": "one-size",
+            "stock": 3
+          }
+        ],
+        "images": [
+          "images/salt-store-items/laptop-bag/01.jpg"
+        ]
+      }
+    ],
+    "title": "Baggie Salt Laptop Bag",
+    "description": "Salt makes awesome Shopping Bags. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
   }
 ]

@@ -7,7 +7,7 @@
       <div class="row">
         <router-link
           to="/products/salty-black-jacket"
-          class="col-3 best-seller"
+          class="col-3 best-seller text-decoration-none text-dark"
         >
           <img
             class="img-fluid mb-3"
@@ -17,7 +17,7 @@
         </router-link>
         <router-link
           to="/products/tshirt-salty"
-          class="col-3 best-seller"
+          class="col-3 best-seller text-decoration-none text-dark"
         >
           <img
             class="img-fluid mb-3"
@@ -27,7 +27,7 @@
         </router-link>
         <router-link
           to="/products/one-size-baseball"
-          class="col-3 best-seller"
+          class="col-3 best-seller text-decoration-none text-dark"
         >
           <img
             class="img-fluid mb-3"
@@ -37,7 +37,7 @@
         </router-link>
         <router-link
           to="/products/baggie-salt-laptop-bag"
-          class="col-3 best-seller"
+          class="col-3 best-seller text-decoration-none text-dark"
         >
           <img
             class="img-fluid mb-3"

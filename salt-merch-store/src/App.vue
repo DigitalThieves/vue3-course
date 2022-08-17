@@ -48,4 +48,12 @@ export default {
 .title-1 {
   font-size: 3.5rem;
 }
+
+.fs-10 {
+  font-size: .85rem;
+}
+
+.fs-12 {
+  font-size: .7rem;
+}
 </style>
