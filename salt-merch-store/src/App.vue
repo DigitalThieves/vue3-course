@@ -56,4 +56,18 @@ export default {
 .fs-12 {
   font-size: .7rem;
 }
+.fs-11 {
+  font-size: .775rem;
+}
+
+button {
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+}
+button:hover {
+  border: 1px solid rgb(237, 236, 236);
+}
+button:active {
+  border: 1px solid rgb(182, 181, 181);
+}
 </style>

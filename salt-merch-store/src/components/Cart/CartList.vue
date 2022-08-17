@@ -1,6 +1,6 @@
 <template>
   <div class="w-full text-left">
-    <p class="fs-6">
+    <p :class="titleSize">
       Cart Items:
     </p>
     <hr>
@@ -8,18 +8,27 @@
       <li
         v-for="item in cartItems"
         :key="item.slug"
-        class="fs-10 mb-3"
+        class="mb-3"
+        :class="itemSize"
       >
-        <router-link
-          :to="'/products/' + item.slug"
-          class="text-decoration-none text-dark"
-        >
-          <img
-            :src="require('@/assets/' + item.colors[0].images[0])"
-            class="cart-list-img"
+        <div class="d-flex justify-content-between align-items-center">
+          <router-link
+            :to="'/products/' + item.slug"
+            class="text-decoration-none text-dark"
           >
-          {{ item.title }} / {{ item.colors[0].color_name }} / {{ item.colors[0].sizes[0].size }} / Qty: {{ item.quantity }}
-        </router-link>
+            <img
+              :src="require('@/assets/' + item.colors[0].images[0])"
+              class="cart-list-img"
+            >
+            {{ item.title }} / {{ item.colors[0].color_name }} / 
+            <span class="text-capitalize">{{ item.colors[0].sizes[0].size }}</span>
+          </router-link>
+          <div class="cart-item-quantity">
+            <button @click="removeQuantity(item)" :class="buttonSize">-</button>
+            <span :class="quantitySize"> Qty: {{ item.quantity }} </span>
+            <button @click="addQuantity(item)" :class="buttonSize">+</button>
+          </div>
+        </div>
       </li>
     </ul>
     <p v-else>
@@ -30,12 +39,76 @@
 <script>
 
 export default {
+  props: {
+    size: {
+      type: String,
+      default: 's'
+    }
+  },
   computed: {
     cartItems () {
       const cart = this.$store.state.cart
       return cart.length ? cart : false
+    },
+    titleSize () {
+      switch (this.size) {
+        case 's':
+          return 'fs-6'
+        case 'm':
+        case 'l':
+        case 'xl':
+          console.log('size is', this.size)
+          return 'fs-3'
+        default:
+          return 'fs-6'
+      }
+    },
+    itemSize () {
+      switch (this.size) {
+        case 's':
+          return 'fs-12'
+        case 'm':
+        case 'l':
+        case 'xl':
+          console.log('size is', this.size)
+          return 'fs-6'
+        default:
+          return 'fs-12'
+      }
+    },
+    buttonSize () {
+      switch (this.size) {
+        case 's':
+          return 'px-2 py-1'
+        case 'm':
+        case 'l':
+        case 'xl':
+          return 'px-3 py-2'
+        default:
+          return 'px-2 py-1'
+      }
+    },
+    quantitySize () {
+      switch (this.size) {
+        case 's':
+          return 'px-1'
+        case 'm':
+        case 'l':
+        case 'xl':
+          return 'px-3'
+        default:
+          return 'px-1'
+      }
+    },
+  },
+  methods: {
+    removeQuantity (item) {
+      this.$store.dispatch('removeItem', item)
+    },
+    addQuantity (item) {
+      this.$store.dispatch('addItem', item)
     }
-  }
+  },
 }
 
 </script>

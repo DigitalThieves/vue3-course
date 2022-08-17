@@ -19,11 +19,27 @@ const store = createStore({
         prev_item.quantity++
       state.cart = [ ...state.cart.filter(el => el.slug != newItem.slug || el.colors[0].color_name != newItem.colors[0].color_name || el.colors[0].sizes[0].size != newItem.colors[0].sizes[0].size), prev_item ]
       localStorage.setItem(storageKey, JSON.stringify(state.cart))
+    },
+    REMOVE_ITEM (state, newItem) {
+      let prev_item = state.cart.filter(el => el.slug == newItem.slug && el.colors[0].color_name == newItem.colors[0].color_name && el.colors[0].sizes[0].size == newItem.colors[0].sizes[0].size )[0]
+      if (!prev_item)
+       return
+      else
+        prev_item.quantity--
+      const rest = state.cart.filter(el => el.slug != newItem.slug || el.colors[0].color_name != newItem.colors[0].color_name || el.colors[0].sizes[0].size != newItem.colors[0].sizes[0].size)
+      if (!prev_item.quantity)
+        state.cart = [ ...rest ]
+      else
+        state.cart = [ ...rest, prev_item ]
+      localStorage.setItem(storageKey, JSON.stringify(state.cart))
     }
   },
   actions: {
     addItem ({ commit }, newItem) {
       commit('ADD_ITEM', newItem)
+    },
+    removeItem ({ commit }, newItem) {
+      commit('REMOVE_ITEM', newItem)
     }
   },
   modules: {},

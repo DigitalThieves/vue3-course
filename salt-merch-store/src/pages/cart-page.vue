@@ -1,6 +1,9 @@
 <template>
-  <div class="mx-5 px-5">
-    <cart-list class="p-5" />
+  <div class="container px-3">
+    <cart-list
+      class="py-5"
+      size="xl"
+    />
   </div>
 </template>
 <script>
@@ -12,3 +15,5 @@ export default {
   },
 }
 </script>
+<style>
+</style>
