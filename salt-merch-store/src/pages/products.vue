@@ -89,9 +89,7 @@
           Add {{ product.title }} To Cart
         </button>
         <hr class="my-3">
-        <p>
-          {{ product.description }}
-        </p>
+        <div v-html="product.description" />
       </div>
     </div>
   </div>

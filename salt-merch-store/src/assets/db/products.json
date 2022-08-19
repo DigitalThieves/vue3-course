@@ -15,7 +15,7 @@
       ]
     }],
     "title": "One Size Baseball Hat",
-    "description": "Salt makes awesome baseball caps. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
+    "description": "<p>Salt makes awesome baseball caps. Get yo'self one immediately before they run out. Go on, don't be shy.</p><p>We take orders fo sure!</p>"
   }, {
     "slug": "salty-black-jacket",
     "category": "jackets",
@@ -48,7 +48,7 @@
       }
     ],
     "title": "Salty Jacket",
-    "description": "Salt makes awesome Jackets. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
+    "description": "<p>Salt makes awesome Jackets. Get yo'self one immediately before they run out. Go on, don't be shy.</p><p>We take orders fo sure!</p>"
   }, {
     "slug": "baggie-salt-shopping-bag",
     "category": "bags",
@@ -66,7 +66,7 @@
       }
     ],
     "title": "Baggie Salt Shopping Bag",
-    "description": "Salt makes awesome Shopping Bags. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
+    "description": "<p>Salt makes awesome Shopping Bags. Get yo'self one immediately before they run out. Go on, don't be shy.</p><p>We take orders fo sure!</p>"
     }, {
       "slug": "tshirt-salty",
       "category": "tshirts",
@@ -150,7 +150,7 @@
         }
       ],
       "title": "Salty T-Shirt",
-      "description": "Salt makes awesome T-Shirts. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
+      "description": "<p>Salt makes awesome T-Shirts. Get yo'self one immediately before they run out. Go on, don't be shy.</p><p>We take orders fo sure!</p>"
   }, {
     "slug": "baggie-salt-laptop-bag",
     "category": "bags",
@@ -170,6 +170,6 @@
       }
     ],
     "title": "Baggie Salt Laptop Bag",
-    "description": "Salt makes awesome Shopping Bags. Get yo'self one immediately before they run out. Go on, don't be shy. We take orders fo sure!"
+    "description": "<p>Salt makes awesome Shopping Bags. Get yo'self one immediately before they run out. Go on, don't be shy.</p><p>We take orders fo sure!</p>"
   }
 ]
