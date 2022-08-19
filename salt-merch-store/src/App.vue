@@ -1,42 +1,18 @@
 <template>
-  <salt-header />
-  <router-view v-slot="{ Component }">
-    <transition
-      name="fade"
-      mode="out-in"
-    >
-      <div :key="$route.name">
-        <component
-          :is="Component"
-        />
-      </div>
-    </transition>
-  </router-view>
-  <salt-footer />
+  <products />
 </template>
 <script>
-import SaltHeader from './components/SaltHeader.vue'
-import SaltFooter from './components/SaltFooter.vue'
+import products from '@/pages/products.vue'
 
 export default {
-  name: 'App',
   components: {
-    SaltHeader,
-    SaltFooter,
+    products
   }
 }
 </script>
 
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

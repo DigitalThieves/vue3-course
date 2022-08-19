@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <template>
   <div
     v-if="isLoading"
@@ -7,9 +6,6 @@
     <h1>
       Loading...
     </h1>
-    <p>
-      Product: {{ $route.params.slug }}
-    </p>
   </div>
   <div
     v-else-if="error"
@@ -118,11 +114,6 @@
 import client from '../api-client'
 export default {
   name: 'App',
-  async beforeRouteUpdate(to, _, next) {
-    this.products = null
-    this.product = await client.getProductBySlug(to.params.slug)
-    next()
-  },
   data () {
     return {
       product: null,
@@ -134,7 +125,7 @@ export default {
     }
   },
   computed: {
-    currentColor () {
+    currentColor () {1
       return this.product.colors[ this.colorIndex ]
     },
     currentImages () {
@@ -155,7 +146,7 @@ export default {
   },
   async mounted () {
     try {
-      this.product = await client.getProductBySlug(this.$route.params.slug)
+      this.product = await client.getProductBySlug('tshirt-salty')
     } catch (e) {
       this.error = e.message
     } finally {
