@@ -1,7 +1,26 @@
 <!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <template>
   <div
-    v-if="product"
+    v-if="isLoading"
+    class="py-5"
+  >
+    <h1>
+      Loading...
+    </h1>
+    <p>
+      Product: {{ $route.params.slug }}
+    </p>
+  </div>
+  <div
+    v-else-if="error"
+    class="py-5"
+  >
+    <h1>
+      {{ error }}
+    </h1>
+  </div>
+  <div
+    v-else
     class="container"
   >
     <div class="row text-left">
@@ -93,27 +112,12 @@
       </div>
     </div>
   </div>
-  <div
-    v-else
-    class="py-5"
-  >
-    <h1>
-      Loading...
-    </h1>
-    <p>
-      Product: {{ $route.params.slug }}
-    </p>
-  </div>
 </template>
 
 <script>
-// import HomePage from '../components/HomePage.vue'
 import client from '../api-client'
 export default {
   name: 'App',
-  components: {
-    // HomePage
-  },
   async beforeRouteUpdate(to, _, next) {
     this.products = null
     this.product = await client.getProductBySlug(to.params.slug)
@@ -125,6 +129,8 @@ export default {
       colorIndex: 0,
       imgIndex: 0,
       sizeIndex: null,
+      isLoading: true,
+      error: null,
     }
   },
   computed: {
@@ -135,7 +141,7 @@ export default {
       return this.currentColor.images
     },
     currentImage () {
-      return require('@/assets/' + (this.currentImages[this.imgIndex]))
+      return require(`@/assets/${this.currentImages[this.imgIndex]}`)
     },
     currentSize () {
       return this.currentColor.sizes[this.sizeIndex]
@@ -148,7 +154,13 @@ export default {
     }
   },
   async mounted () {
-    this.product = await client.getProductBySlug(this.$route.params.slug)
+    try {
+      this.product = await client.getProductBySlug(this.$route.params.slug)
+    } catch (e) {
+      this.error = e.message
+    } finally {
+      this.isLoading = false
+    }
   },
   methods: {
     addItem () {
