@@ -22,24 +22,9 @@
     <div class="row text-left">
       <div class="col-12">
         <p class="text-uppercase fs-12 fw-semibold">
-          <router-link
-            class="text-decoration-none text-dark"
-            to="/"
-          >
-            SALT MERCH
-          </router-link> /
-          <router-link
-            class="text-decoration-none text-dark"
-            :to="'/categories/' + product.category"
-          >
-            {{ product.category }}
-          </router-link> /
-          <router-link
-            class="text-decoration-none text-dark"
-            :to="'/products/' + product.slug"
-          >
-            {{ product.title }}
-          </router-link>
+          SALT MERCH /
+          {{ product.category }} /
+          {{ product.title }}
         </p>
       </div>
       <div class="col-4">
@@ -49,16 +34,15 @@
           tag="div"
         >
           <img
-            v-for="image in [currentImage]"
             :key="image"
-            :src="image"
+            :src="require('@/assets/' + product.colors[0].images[0])"
             class="selected-product-img"
           >
         </transition-group>
         <br>
         <br>
         <img
-          v-for="image, i in currentImages"
+          v-for="image, i in product.colors[0].images"
           :key="image"
           :src="require('@/assets/' + image)"
           class="selectable-product-imgs"
@@ -70,7 +54,7 @@
           {{ product.title }}
         </h1>
         <p>
-          {{ currentColor.color_name }} /
+          {{ product.colors[0].color_name }} /
           <span v-if="sizeIndex !== null && currentSize.stock"> Stock: {{ currentSize.stock }} </span>
           <span v-else-if="sizeIndex !== null"> Out of stock </span>
           <span v-else> No size chosen </span>
@@ -86,10 +70,10 @@
         <br>
         <br>
         <div
-          v-for="size, i in currentColor.sizes"
+          v-for="size, i in product.colors[0].sizes"
           :key="size.size"
           class="selectable-product-sizes border text-center px-3 py-2"
-          :style="sizeStyle(size, i)"
+          :style="size.cssClass"
           @click="size.stock ? sizeIndex = i : null"
         >
           {{ size.size }}
@@ -111,64 +95,16 @@
 </template>
 
 <script>
-import client from '../api-client'
 export default {
   name: 'App',
   data () {
     return {
-      product: null,
+      product: { 'slug': 'tshirt-salty', 'category': 'tshirts', 'colors': [ { 'color_name': 'Black', 'colorhex': '#000', 'sizes': [ { 'size': 'S', 'stock': 1 }, { 'size': 'M', 'stock': 1 }, { 'size': 'L', 'stock': 2 }, { 'size': 'XL', 'stock': 5 }, { 'size': 'XXL', 'stock': 3 } ], 'images': [ 'images/salt-store-items/t-shirt/black-01.jpg', 'images/salt-store-items/t-shirt/black-02.jpg', 'images/salt-store-items/t-shirt/black-03.jpg', 'images/salt-store-items/t-shirt/black-04.jpg' ] }, ], 'title': 'Salty T-Shirt', 'description': "<p>Salt makes awesome T-Shirts. Get yo'self one immediately before they run out. Go on, don't be shy.</p><p>We take orders fo sure!</p>" },
       colorIndex: 0,
       imgIndex: 0,
       sizeIndex: null,
-      isLoading: true,
+      isLoading: false,
       error: null,
-    }
-  },
-  computed: {
-    currentColor () {1
-      return this.product.colors[ this.colorIndex ]
-    },
-    currentImages () {
-      return this.currentColor.images
-    },
-    currentImage () {
-      return require(`@/assets/${this.currentImages[this.imgIndex]}`)
-    },
-    currentSize () {
-      return this.currentColor.sizes[this.sizeIndex]
-    }
-  },
-  watch: {
-    colorIndex () {
-      this.imgIndex = 0
-      this.sizeIndex = null
-    }
-  },
-  async mounted () {
-    try {
-      this.product = await client.getProductBySlug('tshirt-salty')
-    } catch (e) {
-      this.error = e.message
-    } finally {
-      this.isLoading = false
-    }
-  },
-  methods: {
-    addItem () {
-      this.$store.dispatch('addItem', {
-        ...this.product,
-        colors: [
-          {
-            ...this.currentColor,
-            sizes: [ this.currentSize ]
-          }
-        ]
-      })
-    },
-    sizeStyle (size, i) {
-      return i === this.sizeIndex ? 'background-color: black; color: white' : (
-        size.stock ? '' : 'background-color: lightgrey; cursor: default !important;'
-      )
     }
   }
 }
