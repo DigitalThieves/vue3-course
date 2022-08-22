@@ -1,5 +1,5 @@
 <template>
-  <products />
+  <products class="my-5" />
 </template>
 <script>
 import products from '@/pages/products.vue'
@@ -17,7 +17,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 

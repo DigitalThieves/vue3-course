@@ -19,12 +19,11 @@
     v-else
     class="container"
   >
+    <!-- BREADCRUMB -->
     <div class="row text-left">
       <div class="col-12">
         <p class="text-uppercase fs-12 fw-semibold">
-          SALT MERCH /
-          {{ product.category }} /
-          {{ product.title }}
+          SALT MERCH / CATEGORY / TITLE
         </p>
       </div>
       <div class="col-4">
@@ -99,7 +98,34 @@ export default {
   name: 'App',
   data () {
     return {
-      product: { 'slug': 'tshirt-salty', 'category': 'tshirts', 'colors': [ { 'color_name': 'Black', 'colorhex': '#000', 'sizes': [ { 'size': 'S', 'stock': 1 }, { 'size': 'M', 'stock': 1 }, { 'size': 'L', 'stock': 2 }, { 'size': 'XL', 'stock': 5 }, { 'size': 'XXL', 'stock': 3 } ], 'images': [ 'images/salt-store-items/t-shirt/black-01.jpg', 'images/salt-store-items/t-shirt/black-02.jpg', 'images/salt-store-items/t-shirt/black-03.jpg', 'images/salt-store-items/t-shirt/black-04.jpg' ] }, ], 'title': 'Salty T-Shirt', 'description': "<p>Salt makes awesome T-Shirts. Get yo'self one immediately before they run out. Go on, don't be shy.</p><p>We take orders fo sure!</p>" },
+      product: {
+        'category': 'tshirts',
+        'colors': [ {
+          'color_name': 'Black',
+          'colorhex': '#000',
+          'sizes': [
+            {
+              'size': 'S',
+              'stock': 1
+            }, {
+              'size': 'M',
+              'stock': 1
+            }, {
+              'size': 'L',
+              'stock': 2
+            }, {
+              'size': 'XL',
+              'stock': 5
+            }, {
+              'size': 'XXL',
+              'stock': 3
+            }
+          ],
+          'images': [ 'images/salt-store-items/t-shirt/black-01.jpg', 'images/salt-store-items/t-shirt/black-02.jpg', 'images/salt-store-items/t-shirt/black-03.jpg', 'images/salt-store-items/t-shirt/black-04.jpg' ]
+        } ],
+        'title': 'Salty T-Shirt',
+        'description': "<p>Salt makes awesome T-Shirts. Get yo'self one immediately before they run out. Go on, don't be shy.</p><p>We take orders fo sure!</p>"
+      },
       colorIndex: 0,
       imgIndex: 0,
       sizeIndex: null,
@@ -135,4 +161,7 @@ export default {
   height: 50px;
   width: 37px;
 }
+/* body * {
+  text-align: left;
+} */
 </style>
