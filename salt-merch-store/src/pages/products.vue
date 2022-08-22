@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="isLoading"
     class="py-5"
   >
     <h1>
@@ -8,7 +7,6 @@
     </h1>
   </div>
   <div
-    v-else-if="error"
     class="py-5"
   >
     <h1>
@@ -16,8 +14,7 @@
     </h1>
   </div>
   <div
-    v-else
-    class="container"
+    class="container my-5"
   >
     <!-- BREADCRUMB -->
     <div class="row text-left">
@@ -27,67 +24,75 @@
         </p>
       </div>
       <div class="col-4">
-        <transition-group
-          name="fade"
-          mode="out-in"
-          tag="div"
-        >
-          <img
-            :key="image"
-            :src="require('@/assets/' + product.colors[0].images[0])"
-            class="selected-product-img"
-          >
-        </transition-group>
-        <br>
-        <br>
         <img
-          v-for="image, i in product.colors[0].images"
-          :key="image"
-          :src="require('@/assets/' + image)"
+          :src="require('@/assets/' + 'images/salt-store-items/t-shirt/black-01.jpg')"
+          class="selected-product-img mb-3"
+        >
+        <img
+          :src="require('@/assets/' + 'images/salt-store-items/t-shirt/black-01.jpg')"
           class="selectable-product-imgs"
-          @click="imgIndex = i"
+        >
+        <img
+          :src="require('@/assets/' + 'images/salt-store-items/t-shirt/black-02.jpg')"
+          class="selectable-product-imgs"
+        >
+        <img
+          :src="require('@/assets/' + 'images/salt-store-items/t-shirt/black-03.jpg')"
+          class="selectable-product-imgs"
         >
       </div>
       <div class="col-8">
         <h1>
-          {{ product.title }}
+          PRODUCT TITLE
         </h1>
         <p>
-          {{ product.colors[0].color_name }} /
-          <span v-if="sizeIndex !== null && currentSize.stock"> Stock: {{ currentSize.stock }} </span>
-          <span v-else-if="sizeIndex !== null"> Out of stock </span>
-          <span v-else> No size chosen </span>
+          COLOR NAME /
+          <span> Stock: AVAILABLE_STOCK </span>
         </p>
         <hr class="my-3">
         <div
-          v-for="color, i in product.colors"
-          :key="color.color_name"
           class="selectable-product-colors border"
-          :style="'background-color: ' + color.colorhex + ';'"
-          @click="colorIndex = i"
+          style="background-color: #000;"
         />
         <br>
         <br>
         <div
-          v-for="size, i in product.colors[0].sizes"
-          :key="size.size"
           class="selectable-product-sizes border text-center px-3 py-2"
-          :style="size.cssClass"
-          @click="size.stock ? sizeIndex = i : null"
         >
-          {{ size.size }}
+          S
+        </div>
+        <div
+          class="selectable-product-sizes border text-center px-3 py-2"
+        >
+          M
+        </div>
+        <div
+          class="selectable-product-sizes border text-center px-3 py-2"
+        >
+          L
+        </div>
+        <div
+          class="selectable-product-sizes border text-center px-3 py-2"
+        >
+          XL
+        </div>
+        <div
+          class="selectable-product-sizes border text-center px-3 py-2"
+        >
+          XXL
         </div>
         <br>
         <br>
         <button
           class="px-5 py-3"
-          :disabled="sizeIndex == null"
-          @click="addItem"
         >
-          Add {{ product.title }} To Cart
+          Add PRODUCT TITLE To Cart
         </button>
         <hr class="my-3">
-        <div v-html="product.description" />
+        <div>
+          <p> THIS IS DESCRIPTION FIELD AND NEEDS TO BE REPLACED WITH REAL DATA </p>
+          <p> BUT THE DATA IS IN HTML FORMAT. HMMMM... I WONDER HOW TO FIX THIS? </p>
+        </div>
       </div>
     </div>
   </div>
@@ -98,39 +103,12 @@ export default {
   name: 'App',
   data () {
     return {
-      product: {
-        'category': 'tshirts',
-        'colors': [ {
-          'color_name': 'Black',
-          'colorhex': '#000',
-          'sizes': [
-            {
-              'size': 'S',
-              'stock': 1
-            }, {
-              'size': 'M',
-              'stock': 1
-            }, {
-              'size': 'L',
-              'stock': 2
-            }, {
-              'size': 'XL',
-              'stock': 5
-            }, {
-              'size': 'XXL',
-              'stock': 3
-            }
-          ],
-          'images': [ 'images/salt-store-items/t-shirt/black-01.jpg', 'images/salt-store-items/t-shirt/black-02.jpg', 'images/salt-store-items/t-shirt/black-03.jpg', 'images/salt-store-items/t-shirt/black-04.jpg' ]
-        } ],
-        'title': 'Salty T-Shirt',
-        'description': "<p>Salt makes awesome T-Shirts. Get yo'self one immediately before they run out. Go on, don't be shy.</p><p>We take orders fo sure!</p>"
-      },
+      product: {},
       colorIndex: 0,
       imgIndex: 0,
       sizeIndex: null,
       isLoading: false,
-      error: null,
+      error: 'ERROR MESSAGE',
     }
   }
 }
