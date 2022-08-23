@@ -23,7 +23,7 @@
     <div class="row text-left">
       <div class="col-12">
         <p class="text-uppercase fs-12 fw-semibold">
-          SALT MERCH / CATEGORY / TITLE
+          SALT MERCH / {{ product.category }} / {{ product.title }}
         </p>
       </div>
       <div class="col-4">
