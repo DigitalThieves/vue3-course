@@ -1,5 +1,8 @@
 <template>
-  <div class="d-inline-block position-relative cart-icon">
+  <div
+    class="d-inline-block position-relative cart-icon"
+    :class=" expanded ? 'expanded' : ''"
+  >
     <router-link to="/cart">
       <svg
         style="width: 18px;"
@@ -30,7 +33,13 @@ import CartList from './CartList'
 
 export default {
   components: {
-    CartList
+    CartList,
+  },
+  data () {
+    return {
+      expanded: false,
+      expandTimeout: null
+    }
   },
   computed: {
     amount_of_products () {
@@ -41,6 +50,13 @@ export default {
       return amount
     }
   },
+  watch: {
+    amount_of_products () {
+      this.expanded = true
+      clearTimeout(this.expandTimeout)
+      this.expandTimeout = setTimeout(() => this.expanded = false , 4000)
+    }
+  }
 }
 
 </script>
@@ -59,6 +75,7 @@ export default {
   z-index: -1;
   padding: 0 2rem;
 }
+.cart-icon.expanded .cart-icon-list,
 .cart-icon:hover .cart-icon-list {
   height: 200px;
   border: 1px solid lightgrey;
