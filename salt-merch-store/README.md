@@ -1,28 +1,13 @@
 # SALT MERCH STORE DAY 2
 
-## Task of the day
+## Focus of the day
 
-Today, the focus is solely on building the single product page.
-
-Most of the raw HTML is provided to you with hardcoded data. Your task is to utilize the options data-method in order to replace the hardcoded data with the JSON provided below.
-
-### Conditional Rendering
+Today, the focus will mostly continued being on the product page. We will create components, bind variables to them, pass in props and at last we will start working on a starting page and create two components, one with default and named slots and the other will be a multi-root component.
 
 
-
-### Breadcrumb & Title
-
-### List rendering
-
-
-### Active image & Stock
-
-
-### RAW HTML Rendering
-
+## Task 1: Adding event listeners
 
 
 ## Bonus Task: Create project from scratch.
 
 ### Start from scratch
-### Implement Mobile Responsiveness

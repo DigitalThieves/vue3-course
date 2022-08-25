@@ -33,7 +33,7 @@
           tag="div"
         >
           <img
-            :key="image"
+            key="image"
             :src="require('@/assets/' + product.colors[0].images[0])"
             class="selected-product-img"
           >
