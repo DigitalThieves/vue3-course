@@ -61,13 +61,11 @@
         </transition-group>
         <br>
         <br>
-        <img
-          v-for="image, i in currentImages"
-          :key="image"
-          :src="require('@/assets/' + image)"
-          class="selectable-product-imgs"
-          @click="imgIndex = i"
-        >
+        <product-selectables
+          v-model:index="imgIndex"
+          :list="currentImages"
+          type="images"
+        />
       </div>
       <div class="col-8">
         <h1>
@@ -80,24 +78,18 @@
           <span v-else> No size chosen </span>
         </p>
         <hr class="my-3">
-        <div
-          v-for="color, i in product.colors"
-          :key="color.color_name"
-          class="selectable-product-colors border"
-          :style="'background-color: ' + color.colorhex + ';'"
-          @click="colorIndex = i"
+        <product-selectables
+          v-model:index="colorIndex"
+          :list="product.colors"
+          type="colors"
         />
         <br>
         <br>
-        <div
-          v-for="size, i in currentColor.sizes"
-          :key="size.size"
-          class="selectable-product-sizes border text-center px-3 py-2"
-          :style="sizeStyle(size, i)"
-          @click="size.stock ? sizeIndex = i : null"
-        >
-          {{ size.size }}
-        </div>
+        <product-selectables
+          v-model:index="sizeIndex"
+          :list="currentColor.sizes"
+          type="sizes"
+        />
         <br>
         <br>
         <button
@@ -116,8 +108,12 @@
 
 <script>
 import client from '../api-client'
+import ProductSelectables from '@/components/ProductSelectables.vue'
 export default {
   name: 'App',
+  components: {
+    ProductSelectables
+  },
   async beforeRouteUpdate(to, _, next) {
     this.products = null
     this.product = await client.getProductBySlug(to.params.slug)
@@ -174,38 +170,6 @@ export default {
         ]
       })
     },
-    sizeStyle (size, i) {
-      return i === this.sizeIndex ? 'background-color: black; color: white' : (
-        size.stock ? '' : 'background-color: lightgrey; cursor: default !important;'
-      )
-    }
   }
 }
 </script>
-
-<style>
-.selected-product-img,
-.selectable-product-imgs {
-  object-fit: cover;
-  object-position: center;
-}
-.selected-product-img {
-  height: 520px;
-  width: 100%;
-}
-.selectable-product-imgs,
-.selectable-product-sizes,
-.selectable-product-colors {
-  display: inline-block;
-  margin-right: 10px;
-  cursor: pointer;
-}
-.selectable-product-imgs {
-  height: 100px;
-  width: 75px;
-}
-.selectable-product-colors {
-  height: 50px;
-  width: 37px;
-}
-</style>

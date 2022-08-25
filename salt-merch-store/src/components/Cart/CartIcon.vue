@@ -37,6 +37,7 @@ export default {
   },
   data () {
     return {
+      val: '',
       expanded: false,
       expandTimeout: null
     }
@@ -56,7 +57,7 @@ export default {
       clearTimeout(this.expandTimeout)
       this.expandTimeout = setTimeout(() => this.expanded = false , 4000)
     }
-  }
+  },
 }
 
 </script>
@@ -68,7 +69,7 @@ export default {
   box-sizing: border-box;
   height: 0;
   width: 500px;
-  transition: height .2s ease-in;
+  transition: height .3s ease-in;
   overflow: scroll;
   top: -10px;
   left: -460px;
