@@ -66,10 +66,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.object-fit {
-  object-fit: cover;
-  object-position: center;
-}
-</style>
