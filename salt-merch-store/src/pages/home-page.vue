@@ -3,7 +3,6 @@
     <picture-overlayed-with-text />
     <div class="row">
       <div class="w-100 text-left py-5">
-        <best-sellers />
         <categories-nav />
       </div>
     </div>
