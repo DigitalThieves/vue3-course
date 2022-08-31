@@ -1,27 +1,10 @@
 <template>
   <div class="container p-0">
-    <picture-overlayed-with-text>
-      <div class="text-white text-center">
-        <h2>
-          {{ tagline }}
-        </h2>
-        <h1 class="title-1 fw-bold mb-3">
-          Salt Merch
-        </h1>
-        <router-link
-          class="text-decoration-none text-dark"
-          to="/collection"
-        >
-          <button class="bg-white px-5 py-3">
-            SHOP THE COLLECTION
-          </button>
-        </router-link>
-      </div>
-    </picture-overlayed-with-text>
+    <picture-overlayed-with-text />
     <div class="row">
       <div class="w-100 text-left py-5">
         <best-sellers />
-        <categories-nav class="bg-secondary p-5 text-white text-center" />
+        <categories-nav />
       </div>
     </div>
   </div>
@@ -29,23 +12,15 @@
 
 <script>
 // import BestSellers from './BestSellers.vue'
-// import CategoriesNav from './CategoriesNav.vue'
+import CategoriesNav from '@/components/CategoriesNav.vue'
 import PictureOverlayedWithText from '@/components/PictureOverlayedWithText.vue'
 export default {
   name: 'HelloWorld',
   components: {
     PictureOverlayedWithText,
     // BestSellers,
-    // CategoriesNav,
+    CategoriesNav,
   },
-  props: {
-    msg: String
-  },
-  data () {
-    return {
-      tagline: 'Timeless Love'
-    }
-  }
 }
 </script>
 

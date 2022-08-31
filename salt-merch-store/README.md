@@ -74,4 +74,15 @@ Do the following:
 12. Make sure everything works
 
 ## Bonus Task: Slots and multi-root-components
+In `App.vue` change the "products" component to instead use `home-page.vue` in `/pages` and open the file.
 
+### Slots
+  The HomePage uses two components: PictureWithOverlay and CategoriesNav. Let's focus on the first one for now. Open the component file.
+  1. The text content on top of the picture should be made into a default slot and the content should be moved to the home-page.vue
+  2. The overlayed background should be made into a slot named "overlay" and moved to the home-page.vue
+
+### Attributes and Multi-root Components
+  In CategoriesNav.vue there are two roots: a p-element and a div. The div has the following class-attribute:
+  `class="bg-secondary p-5 text-white text-center"`
+
+  We would like these to be adjustable on component-level and therefore we want to move that attribute to `<categories-nav />` on home-page.vue instead so that it says `<categories-nav class="bg-secondary p-5 text-white text-center" />` and still look the same. This will require the use of `$attrs` object on the component. Make it happen!
