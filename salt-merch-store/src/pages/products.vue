@@ -73,7 +73,7 @@
         </h1>
         <p>
           {{ currentColor.color_name }} /
-          <span v-if="sizeIndex !== null && currentSize.stock"> Stock: {{ currentSize.stock }} </span>
+          <span v-if="sizeIndex !== null && currentSize !== null && currentSize.stock"> Stock: {{ currentSize.stock }} </span>
           <span v-else-if="sizeIndex !== null"> Out of stock </span>
           <span v-else> No size chosen </span>
         </p>
