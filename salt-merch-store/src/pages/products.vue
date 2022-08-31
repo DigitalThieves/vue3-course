@@ -41,11 +41,16 @@
         <br>
         <br>
         <img
-          v-for="image, i in product.colors[0].images"
-          :key="image"
-          :src="require('@/assets/' + image)"
+          :src="require('@/assets/' + product.colors[0].images[0])"
           class="selectable-product-imgs"
-          @click="imgIndex = i"
+        >
+        <img
+          :src="require('@/assets/' + product.colors[0].images[1])"
+          class="selectable-product-imgs"
+        >
+        <img
+          :src="require('@/assets/' + product.colors[0].images[2])"
+          class="selectable-product-imgs"
         >
       </div>
       <div class="col-8">
@@ -54,9 +59,7 @@
         </h1>
         <p>
           {{ product.colors[0].color_name }} /
-          <span v-if="sizeIndex !== null && currentSize.stock"> Stock: {{ currentSize.stock }} </span>
-          <span v-else-if="sizeIndex !== null"> Out of stock </span>
-          <span v-else> No size chosen </span>
+          <span> Stock: {{ product.colors[0].sizes[0].stock }} </span>
         </p>
         <hr class="my-3">
         <div
@@ -69,13 +72,24 @@
         <br>
         <br>
         <div
-          v-for="size, i in product.colors[0].sizes"
-          :key="size.size"
-          class="selectable-product-sizes border text-center px-3 py-2"
-          :style="size.cssClass"
-          @click="size.stock ? sizeIndex = i : null"
+          class="selectable-product-sizes border text-center px-3 py-2 bg-dark text-white"
         >
-          {{ size.size }}
+          {{ product.colors[0].sizes[0].size }}
+        </div>
+        <div
+          class="selectable-product-sizes border text-center px-3 py-2"
+        >
+          {{ product.colors[0].sizes[1].size }}
+        </div>
+        <div
+          class="selectable-product-sizes border text-center px-3 py-2"
+        >
+          {{ product.colors[0].sizes[2].size }}
+        </div>
+        <div
+          class="selectable-product-sizes border text-center px-3 py-2"
+        >
+          {{ product.colors[0].sizes[3].size }}
         </div>
         <br>
         <br>

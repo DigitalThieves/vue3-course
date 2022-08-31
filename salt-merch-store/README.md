@@ -2,7 +2,7 @@
 
 ## Focus of the day
 
-Today, the focus will mostly continued being on the product page. We will create components, bind variables to them, pass in props and at last we will start working on a starting page and create two components, one with default and named slots and the other will be a multi-root component.
+Today, the focus will mostly continued be on the product page. We will create components, bind variables to them, pass in props and at last we will start working on a starting page and create two components, one with default and named slots and the other will be a multi-root component.
 
 
 ## Task 1: "Fake" a loading screen
@@ -26,15 +26,52 @@ Switching active colors should have no effect at this point, because all other v
 The large product image (with class 'selected-product-img') is picked from the list of images with a hardcoded 0. Let's change this
 
 1. Create a computed value named something like `currentColor` and make it return the active color object
-2. Create a computed value named something like `currentImage` and make it return the active image from the current color object (hint: Computed values can use other computed values as variables)
-3. Make the large image use `currentImage` and make sure it works
-4. Add a click-listener to every selectable image that reassigns the right inde to imgIndex.
-5. Click on various images and make sure it works
+2. Create a computed value named something like `currentImage` and make it return the active image from the current color object and a hardcoded imageIndex (hint: Computed values can use other computed values as variables)
+3. Make the large image use `currentImage` and make sure it works by changing the hardcoded imageIndex.
 
 ### Selectable images
-Each color have a collection of images of the product in that color. The collection of small images is hardcoded, make it instead use the collection of images from currentColor.images using the `v-for` directive.
+Each color have a collection of images of the product in that color. The rendered collection of small images is hardcodedly picked from the arrays, make it instead use the collection of images from currentColor.images using the `v-for` directive.
+1. use v-for to iterate over the list of images given currentColor.
+2. Add a click-listener to every selectable image that reassigns an imgIndex.
+3. Make the currentImage computed property use the dynamic imgIndex
+4. Click on various images and make sure it works!
 
 
-## Bonus Task: Create project from scratch.
+### Selectable size and displaying stock
+1. Each color have a collection of sizes. Right now the sizes are hardcoded, make them dynamic using v-for directive.
+2. Create a data property named sizeIndex (or something similar). Give its initial value null.
+3. Make clicking a size reassign sizeIndex to the clicked index.
+4. If a size has been clicked, give it the classes "bg-dark" and "text-white".
+5. The stock is hardcoded. If sizeIndex === null, make it display "No size chosen", otherwise it should show the available stock of chosen size (or "Out of stock" if stock === 0)
 
-### Start from scratch
+### Dynamically disabled buy-button
+The "Add Salty T-Shirt To Cart" button is disabled by default. Make it NOT be disabled depending on the following statements
+1. A color has been picked (always true) - AND
+2. A size has been picked - AND
+3. Current color & size has available Stock.
+
+There's no need to add a click-listener to the button. That will come in future Labs!
+
+## Task 3: Componentize selectable behaviour
+Everything that was done in Task 2 can be generalized. If you think about it, all three selectables have the following thing in common:
+
+1. Given an array of elements, iterate over all of them and render a square-like figure with the info from the elemnt
+2. Attach a click-listener on each square that re-assigns a variable to the index of the clicked element
+
+Let's turn this into a component called something like "ProductSelectables"!
+Do the following:
+1. Create a component called "ProductSelectables" in the `/components` folder.
+2. The squares are different enough to require us to render them differently. This will require our component to know what `selectables-type` it is rendering and use the `v-if` directive to know whether it should render selectable images, sizes or colors. Therefore, make it accept a prop named `selectables-type`
+3. Regardless of what type of selectable is in use, the component should accept an array of elements to render. Therefore, make it accept a prop named something like `selectables`
+4. Even though the component will take care of listening and assigning the active index, the parent component still needs to know it and may want to control the initial value, therefore make the component accept a prop named `active-index`
+5. Render all the elements in the `selectables` array according to if it is "images", "sizes" or "colors" and attach a click-listener to each elements that emits a `selected`-event.
+6. Import, register and USE the component in products.vue. Begin only with colors for now. Attach the right props (colors-array to `selectables`, colorIndex to `active-index` and so on)
+7. Attach an event-listener to the component that listens to the `selected`-event and changes the (in the case of Colors) colorIndex.
+8. Make sure it works.
+9. Refactor the `selected`-event to instead be `update:<propname>` and remove the `selected` listener on products.vue and make active-index instead be attached using the `v-model` directive
+10. Make sure it works
+11. Now replace sizes and images to instead use the ProductSelctables component
+12. Make sure everything works
+
+## Bonus Task: Slots and multi-root-components
+
