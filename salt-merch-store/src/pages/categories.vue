@@ -72,8 +72,4 @@ export default {
   object-fit: cover;
   object-position: center;
 }
-
-.h-520 {
-  height: 520px;
-}
 </style>
