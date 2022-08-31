@@ -30,7 +30,7 @@
 <script>
 // import BestSellers from './BestSellers.vue'
 // import CategoriesNav from './CategoriesNav.vue'
-import PictureOverlayedWithText from './PictureOverlayedWithText.vue'
+import PictureOverlayedWithText from '@/components/PictureOverlayedWithText.vue'
 export default {
   name: 'HelloWorld',
   components: {

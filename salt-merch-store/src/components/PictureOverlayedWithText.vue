@@ -1,3 +1,4 @@
+
 <template>
   <div class="w-100 position-relative">
     <img
@@ -18,3 +19,8 @@
     </div>
   </div>
 </template>
+<style>
+  .h-520 {
+    height: 520px;
+  }
+  </style>
