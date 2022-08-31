@@ -64,7 +64,7 @@ Do the following:
 2. The squares are different enough to require us to render them differently. This will require our component to know what `selectables-type` it is rendering and use the `v-if` directive to know whether it should render selectable images, sizes or colors. Therefore, make it accept a prop named `selectables-type`
 3. Regardless of what type of selectable is in use, the component should accept an array of elements to render. Therefore, make it accept a prop named something like `selectables`
 4. Even though the component will take care of listening and assigning the active index, the parent component still needs to know it and may want to control the initial value, therefore make the component accept a prop named `active-index`
-5. Render all the elements in the `selectables` array according to if it is "images", "sizes" or "colors" and attach a click-listener to each elements that emits a `selected`-event.
+5. Render all the elements in the `selectables` array according to if it is "images", "sizes" or "colors" and attach a click-listener to each elements that emits a `selected`-event. Also, move the 'selectables'-css from "products.vue" to the ProductSelectables component.
 6. Import, register and USE the component in products.vue. Begin only with colors for now. Attach the right props (colors-array to `selectables`, colorIndex to `active-index` and so on)
 7. Attach an event-listener to the component that listens to the `selected`-event and changes the (in the case of Colors) colorIndex.
 8. Make sure it works.
