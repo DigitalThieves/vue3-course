@@ -174,9 +174,12 @@ export default {
       colorIndex: 0,
       imgIndex: 0,
       sizeIndex: null,
-      isLoading: false,
+      isLoading: true,
       error: null,
     }
+  },
+  mounted () {
+    setTimeout(() => this.isLoading = false, 500)
   }
 }
 </script>
