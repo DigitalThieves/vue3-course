@@ -54,7 +54,9 @@
         </h1>
         <p>
           {{ currentColor.color_name }} /
-          <span> Stock: {{ currentColor.sizes[0].stock }} </span>
+          <span v-if="sizeIndex == null"> No size chosen </span>
+          <span v-else-if="currentColor.sizes[sizeIndex].stock == 0"> Out of stock </span>
+          <span v-else> Stock: {{ currentColor.sizes[sizeIndex].stock }} </span>
         </p>
         <hr class="my-3">
         <div
@@ -67,24 +69,13 @@
         <br>
         <br>
         <div
-          class="selectable-product-sizes border text-center px-3 py-2 bg-dark text-white"
-        >
-          {{ currentColor.sizes[0].size }}
-        </div>
-        <div
+          v-for="size, i in currentColor.sizes"
+          :key="'selectable-size-' + i"
           class="selectable-product-sizes border text-center px-3 py-2"
+          :class="sizeIndex === i ? 'bg-dark text-white' : ''"
+          @click="sizeIndex = i"
         >
-          {{ currentColor.sizes[1].size }}
-        </div>
-        <div
-          class="selectable-product-sizes border text-center px-3 py-2"
-        >
-          {{ currentColor.sizes[2].size }}
-        </div>
-        <div
-          class="selectable-product-sizes border text-center px-3 py-2"
-        >
-          {{ currentColor.sizes[3].size }}
+          {{ size.size }}
         </div>
         <br>
         <br>
@@ -179,6 +170,12 @@ export default {
     },
     currentImage () {
       return this.currentColor.images[this.imgIndex]
+    }
+  },
+  watch: {
+    currentColor () {
+      this.imgIndex = 0
+      this.sizeIndex = 0
     }
   },
   mounted () {
