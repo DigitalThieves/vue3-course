@@ -63,11 +63,12 @@
         </p>
         <hr class="my-3">
         <div
-          v-for="color, i in product.colors"
-          :key="color.color_name"
           class="selectable-product-colors border"
-          :style="'background-color: ' + color.colorhex + ';'"
-          @click="colorIndex = i"
+          :style="'background-color: ' + product.colors[0].colorhex + ';'"
+        />
+        <div
+          class="selectable-product-colors border"
+          :style="'background-color: ' + product.colors[1].colorhex + ';'"
         />
         <br>
         <br>
