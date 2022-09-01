@@ -66,14 +66,14 @@ Everything that was done in Task 2 can be generalized. If you think about it, al
 Let's turn this into a component called something like "ProductSelectables"!
 Do the following:
 1. Create a component called "ProductSelectables" in the `/components` folder.
-2. The squares are different enough to require us to render them differently. This will require our component to know what `selectables-type` it is rendering and use the `v-if` directive to know whether it should render selectable images, sizes or colors. Therefore, make it accept a prop named `selectables-type`
+2. The squares are different enough to require us to render them differently. This will require our component to know what `selectablesType` it is rendering and use the `v-if` directive to know whether it should render selectable images, sizes or colors. Therefore, make it accept a prop named `selectablesType`
 3. Regardless of what type of selectable is in use, the component should accept an array of elements to render. Therefore, make it accept a prop named something like `selectables`
-4. Even though the component will take care of listening and assigning the active index, the parent component still needs to know it and may want to control the initial value, therefore make the component accept a prop named `active-index`
+4. Even though the component will take care of listening and assigning the active index, the parent component still needs to know it and may want to control the initial value, therefore make the component accept a prop named `activeIndex`
 5. Render all the elements in the `selectables` array according to if it is "images", "sizes" or "colors" and attach a click-listener to each elements that emits a `selected`-event. Also, move the 'selectables'-css from "products.vue" to the ProductSelectables component.
-6. Import, register and USE the component in products.vue. Begin only with colors for now. Attach the right props (colors-array to `selectables`, colorIndex to `active-index` and so on)
+6. Import, register and USE the component in products.vue. Begin only with colors for now. Attach the right props (colors-array to `selectables`, colorIndex to `activeIndex` and so on)
 7. Attach an event-listener to the component that listens to the `selected`-event and changes the (in the case of Colors) colorIndex.
 8. Make sure it works.
-9. Refactor the `selected`-event to instead be `update:<propname>` and remove the `selected` listener on products.vue and make active-index instead be attached using the `v-model` directive
+9. Refactor the `selected`-event to instead be `update:<propname>` and remove the `selected` listener on products.vue and make activeIndex instead be attached using the `v-model` directive
 10. Make sure it works
 11. Now replace sizes and images to instead use the ProductSelctables component
 12. Make sure everything works
