@@ -34,23 +34,18 @@
         >
           <img
             key="image"
-            :src="require('@/assets/' + product.colors[0].images[0])"
+            :src="require('@/assets/' + currentImage)"
             class="selected-product-img"
           >
         </transition-group>
         <br>
         <br>
         <img
-          :src="require('@/assets/' + product.colors[0].images[0])"
+          v-for="image, i in currentColor.images"
+          :key="'selectable-image-' + i"
+          :src="require('@/assets/' + image)"
           class="selectable-product-imgs"
-        >
-        <img
-          :src="require('@/assets/' + product.colors[0].images[1])"
-          class="selectable-product-imgs"
-        >
-        <img
-          :src="require('@/assets/' + product.colors[0].images[2])"
-          class="selectable-product-imgs"
+          @click="imgIndex = i"
         >
       </div>
       <div class="col-8">
@@ -58,39 +53,38 @@
           {{ product.title }}
         </h1>
         <p>
-          {{ product.colors[0].color_name }} /
-          <span> Stock: {{ product.colors[0].sizes[0].stock }} </span>
+          {{ currentColor.color_name }} /
+          <span> Stock: {{ currentColor.sizes[0].stock }} </span>
         </p>
         <hr class="my-3">
         <div
+          v-for="color, i in product.colors"
+          :key="'selectable-img-' + i"
           class="selectable-product-colors border"
-          :style="'background-color: ' + product.colors[0].colorhex + ';'"
-        />
-        <div
-          class="selectable-product-colors border"
-          :style="'background-color: ' + product.colors[1].colorhex + ';'"
+          :style="'background-color: ' + color.colorhex + ';'"
+          @click="colorIndex = i"
         />
         <br>
         <br>
         <div
           class="selectable-product-sizes border text-center px-3 py-2 bg-dark text-white"
         >
-          {{ product.colors[0].sizes[0].size }}
+          {{ currentColor.sizes[0].size }}
         </div>
         <div
           class="selectable-product-sizes border text-center px-3 py-2"
         >
-          {{ product.colors[0].sizes[1].size }}
+          {{ currentColor.sizes[1].size }}
         </div>
         <div
           class="selectable-product-sizes border text-center px-3 py-2"
         >
-          {{ product.colors[0].sizes[2].size }}
+          {{ currentColor.sizes[2].size }}
         </div>
         <div
           class="selectable-product-sizes border text-center px-3 py-2"
         >
-          {{ product.colors[0].sizes[3].size }}
+          {{ currentColor.sizes[3].size }}
         </div>
         <br>
         <br>
@@ -179,9 +173,17 @@ export default {
       error: null,
     }
   },
+  computed: {
+    currentColor () {
+      return this.product.colors[this.colorIndex]
+    },
+    currentImage () {
+      return this.currentColor.images[this.imgIndex]
+    }
+  },
   mounted () {
     setTimeout(() => this.isLoading = false, 500)
-  }
+  },
 }
 </script>
 
