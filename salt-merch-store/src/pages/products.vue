@@ -81,8 +81,7 @@
         <br>
         <button
           class="px-5 py-3"
-          :disabled="sizeIndex == null"
-          @click="addItem"
+          disabled
         >
           Add {{ product.title }} To Cart
         </button>
