@@ -55,8 +55,8 @@
         <p>
           {{ currentColor.color_name }} /
           <span v-if="sizeIndex == null"> No size chosen </span>
-          <span v-else-if="currentColor.sizes[sizeIndex].stock == 0"> Out of stock </span>
-          <span v-else> Stock: {{ currentColor.sizes[sizeIndex].stock }} </span>
+          <span v-else-if="currentSize.stock == 0"> Out of stock </span>
+          <span v-else> Stock: {{ currentSize.stock }} </span>
         </p>
         <hr class="my-3">
         <div
@@ -81,7 +81,8 @@
         <br>
         <button
           class="px-5 py-3"
-          disabled
+          :disabled="sizeIndex == null || !currentSize.stock"
+          @click="addItem"
         >
           Add {{ product.title }} To Cart
         </button>
@@ -169,6 +170,9 @@ export default {
     },
     currentImage () {
       return this.currentColor.images[this.imgIndex]
+    },
+    currentSize () {
+      return this.currentColor.sizes[this.sizeIndex]
     }
   },
   watch: {
