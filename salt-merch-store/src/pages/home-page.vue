@@ -1,9 +1,30 @@
 <template>
   <div class="container p-0">
-    <picture-overlayed-with-text />
+    <picture-overlayed-with-text>
+      <div class="text-white text-center">
+        <template #overlay>
+          <div
+            class="position-absolute w-100 h-100 bg-secondary"
+            style="top: 0%; left: 0%; opacity:0.5;"
+          />
+        </template>
+        <template>
+          <h2>
+            Timeless Love
+          </h2>
+          <h1 class="title-1 fw-bold mb-3">
+            Salt Merch
+          </h1>
+          <button class="bg-white px-5 py-3">
+            SHOP THE COLLECTION
+          </button>
+        </template>
+      </div>
+    </picture-overlayed-with-text>
     <div class="row">
       <div class="w-100 text-left py-5">
-        <categories-nav />
+        <categories-nav>
+        </categories-nav>
       </div>
     </div>
   </div>

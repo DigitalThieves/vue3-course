@@ -40,13 +40,11 @@
         </transition-group>
         <br>
         <br>
-        <img
-          v-for="image, i in currentColor.images"
-          :key="'selectable-image-' + i"
-          :src="require('@/assets/' + image)"
-          class="selectable-product-imgs"
-          @click="imgIndex = i"
-        >
+        <product-selectables
+          v-model:active-index="imgIndex"
+          :selectables="currentColor.images"
+          selectables-type="images"
+        />
       </div>
       <div class="col-8">
         <h1>
@@ -59,24 +57,18 @@
           <span v-else> Stock: {{ currentSize.stock }} </span>
         </p>
         <hr class="my-3">
-        <div
-          v-for="color, i in product.colors"
-          :key="'selectable-img-' + i"
-          class="selectable-product-colors border"
-          :style="'background-color: ' + color.colorhex + ';'"
-          @click="colorIndex = i"
+        <product-selectables
+          v-model:active-index="colorIndex"
+          :selectables="product.colors"
+          selectables-type="colors"
         />
         <br>
         <br>
-        <div
-          v-for="size, i in currentColor.sizes"
-          :key="'selectable-size-' + i"
-          class="selectable-product-sizes border text-center px-3 py-2"
-          :class="sizeIndex === i ? 'bg-dark text-white' : ''"
-          @click="sizeIndex = i"
-        >
-          {{ size.size }}
-        </div>
+        <product-selectables
+          v-model:active-index="sizeIndex"
+          :selectables="currentColor.sizes"
+          selectables-type="sizes"
+        />
         <br>
         <br>
         <button
@@ -94,8 +86,12 @@
 </template>
 
 <script>
+import ProductSelectables from '@/components/ProductSelectables.vue'
 export default {
   name: 'App',
+  components: {
+    ProductSelectables
+  },
   data () {
     return {
       product: {

@@ -2,7 +2,7 @@
   <products class="my-5" />
 </template>
 <script>
-import products from '@/pages/products.vue'
+import products from '@/pages/home-page.vue'
 
 export default {
   components: {
