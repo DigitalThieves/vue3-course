@@ -40,7 +40,7 @@ Each color have a collection of images of the product in that color. The rendere
 Each color have various amounts of images and if imageIndex is pointing to let's say 3 and you switch to white, which only has two images, you will get an error. Fix this by doing:
 1. Add a Watch property and watch the currentColor variable
 2. Upon function execution, reset imgIndex to 0.
-
+3. Click around and make sure it works
 
 ### Selectable size and displaying stock
 1. Each color have a collection of sizes. Right now the sizes are hardcoded, make them dynamic using v-for directive.
