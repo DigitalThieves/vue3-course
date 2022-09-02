@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import client from '../api-client'
+import client from '@/services/api-client'
 import ProductSelectables from '@/components/ProductSelectables.vue'
 export default {
   name: 'App',
