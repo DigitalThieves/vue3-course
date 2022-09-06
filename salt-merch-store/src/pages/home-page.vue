@@ -21,7 +21,7 @@
     </picture-overlayed-with-text>
     <div class="row">
       <div class="w-100 text-left py-5">
-        <categories-nav class="bg-secondary p-5 text-white text-center"/>
+        <categories-nav class="bg-secondary p-5 text-white text-center" />
       </div>
     </div>
   </div>

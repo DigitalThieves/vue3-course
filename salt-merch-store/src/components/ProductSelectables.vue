@@ -10,6 +10,7 @@
   </template>
   <template v-else-if="selectablesType == 'sizes'">
     <div
+      data-testid="selectable"
       v-for="size, i in selectables"
       :key="'selectable-size-' + i"
       class="selectable-product-sizes border text-center px-3 py-2"

@@ -40,3 +40,8 @@ This is a simple component with two slots, one named and one default. Test that 
 ## Task 4: Testing CategoriesNav.vue
 This is a simple component that given attributes puts it one of it's root but not on the other. Test that the attributes are added to the correct root element.
 
+
+## Random Tips:
+1. Use selectors like '.classname > div' if that suits you, or else feel free to add test attributes like `data-testid="elementId"` to the components you want to test to easier find what you're looking for.
+2. There is a find() and a findAll() method for doing query selections, use them according to your needs
+3. There are a couple of tests provided to you that are failing because they're not fully implemented, but if you study them you will see that they are half-finished. By finishing them first, you should be able to figure out how to write the rest of the tests
