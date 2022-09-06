@@ -4,7 +4,7 @@
     v-if="isLoading"
     class="py-5"
   >
-    <h1>
+    <h1 data-testid="loading">
       Loading...
     </h1>
     <p>
@@ -15,8 +15,8 @@
     v-else-if="error"
     class="py-5"
   >
-    <h1>
-      {{ error }}
+    <h1 data-testid="error">
+      error: {{ error }}
     </h1>
   </div>
   <div
@@ -62,13 +62,13 @@
         <br>
         <br>
         <product-selectables
-          v-model:index="imgIndex"
-          :list="currentImages"
-          type="images"
+          v-model:activeIndex="imgIndex"
+          :selectables="currentImages"
+          selectables-type="images"
         />
       </div>
       <div class="col-8">
-        <h1>
+        <h1 data-testid="title">
           {{ product.title }}
         </h1>
         <p>
@@ -79,16 +79,16 @@
         </p>
         <hr class="my-3">
         <product-selectables
-          v-model:index="colorIndex"
-          :list="product.colors"
-          type="colors"
+          v-model:activeIndex="colorIndex"
+          :selectables="product.colors"
+          selectables-type="colors"
         />
         <br>
         <br>
         <product-selectables
-          v-model:index="sizeIndex"
-          :list="currentColor.sizes"
-          type="sizes"
+          v-model:activeIndex="sizeIndex"
+          :selectables="currentColor.sizes"
+          selectables-type="sizes"
         />
         <br>
         <br>

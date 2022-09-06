@@ -1,5 +1,6 @@
 <template>
   <div
+    data-testid="expanded-class"
     class="d-inline-block position-relative cart-icon"
     :class=" expanded ? 'expanded' : ''"
   >

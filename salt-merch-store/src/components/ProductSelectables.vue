@@ -1,31 +1,34 @@
 <template>
-  <template v-if="type === 'sizes'">
+  <template v-if="selectablesType === 'sizes'">
     <div
-      v-for="size, i in list"
+      v-for="size, i in selectables"
       :key="size.size"
+      data-testid="selectable"
       class="selectable-product-sizes border text-center px-3 py-2"
       :style="sizeStyle(size, i)"
-      @click="size.stock ? $emit('update:index', i) : null"
+      @click="size.stock ? $emit('update:activeIndex', i) : null"
     >
       {{ size.size }}
     </div>
   </template>
-  <template v-else-if="type === 'colors'">
+  <template v-else-if="selectablesType === 'colors'">
     <div
-      v-for="color, i in list"
+      v-for="color, i in selectables"
       :key="color.color_name"
+      data-testid="selectable"
       class="selectable-product-colors border"
       :style="'background-color: ' + color.colorhex + ';'"
-      @click="$emit('update:index', i)"
+      @click="$emit('update:activeIndex', i)"
     />
   </template>
-  <template v-else-if="type === 'images'">
+  <template v-else-if="selectablesType === 'images'">
     <img
-      v-for="image, i in list"
+      v-for="image, i in selectables"
       :key="'image-' + i"
+      data-testid="selectable"
       :src="require('@/assets/' + image)"
       class="selectable-product-imgs"
-      @click="$emit('update:index', i)"
+      @click="$emit('update:activeIndex', i)"
     >
   </template>
 </template>
@@ -33,29 +36,29 @@
 
 export default {
   props: {
-    list: {
+    selectables: {
       type: Array,
       default () {
         return []
       }
     },
-    type: {
+    selectablesType: {
       type: String,
       default () {
         return 'sizes'
       }
     },
-    index: {
+    activeIndex: {
       type: Number,
       default () {
         return 0
       }
     },
   },
-  emits: [ 'update:index' ],
+  emits: [ 'update:activeIndex' ],
   methods: {
     sizeStyle (size, i) {
-      return i === this.index ? 'background-color: black; color: white' : (
+      return i === this.activeIndex ? 'background-color: black; color: white' : (
         size.stock ? '' : 'background-color: lightgrey; cursor: default !important;'
       )
     }

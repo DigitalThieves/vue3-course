@@ -28,6 +28,7 @@
             :class="quantitySize"
           >
             <button
+              data-testid="removeBtn"
               :class="buttonSize"
               @click="removeQuantity(item)"
             >
@@ -35,6 +36,7 @@
             </button>
             <span> Qty: {{ item.quantity }} </span>
             <button
+              data-testid="addBtn"
               :class="buttonSize"
               @click="addQuantity(item)"
             >

@@ -1,6 +1,9 @@
 <template>
   <p class="mt-5">Categories.</p>
-  <div v-bind="$attrs">
+  <div
+    v-bind="$attrs"
+    data-testid="attrs"
+  >
     <h2 class="mb-5">
       popular categories.
     </h2>

@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils'
 import RandomNumber from '@/components/test-examples/RandomNumber'
 
