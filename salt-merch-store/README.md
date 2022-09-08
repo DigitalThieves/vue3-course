@@ -1,4 +1,4 @@
-# SALT MERCH STORE DAY 2
+# SALT MERCH STORE DAY 3
 
 ## Focus of the day
 
@@ -11,7 +11,7 @@ Products.vue does a couple of things. Given product data, it renders its title a
 
 ### What to test for:
 
-1. Use the setData for mounting the component to have products be null and error null and isLoading null so that the component should render the `Loading...` screen and test that it does
+1. Use the setData for mounting the component to have products be null and error null and isLoading = true so that the component should render the `Loading...` screen and test that it does
 2. Add an error object in error and test that it renders it correctly
 3. Given product data, see that the correct title is rendered and also the correct description
 

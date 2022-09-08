@@ -3,7 +3,7 @@
     v-if="isLoading"
     class="py-5"
   >
-    <h1>
+    <h1 data-testid="loading">
       Loading...
     </h1>
   </div>
@@ -11,7 +11,7 @@
     v-else-if="error"
     class="py-5"
   >
-    <h1>
+    <h1 data-testid="error">
       {{ error }}
     </h1>
   </div>
@@ -47,7 +47,7 @@
         />
       </div>
       <div class="col-8">
-        <h1>
+        <h1 data-testid="title">
           {{ product.title }}
         </h1>
         <p>
@@ -79,7 +79,7 @@
           Add {{ product.title }} To Cart
         </button>
         <hr class="my-3">
-        <div v-html="product.description" />
+        <div data-testid="description" v-html="product.description" />
       </div>
     </div>
   </div>
