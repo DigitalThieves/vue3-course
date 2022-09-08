@@ -27,29 +27,6 @@ Today, the focus is solely on building the single product page.
 
 Most of the raw HTML is provided to you with hardcoded data. Your task is to utilize the options data-method in order to replace the hardcoded data with the JSON provided below.
 
-### Conditional Rendering
-
-Once you run this branch as-is you will see that both "LOADING" and "ERROR MESSAGE" is on display as well as the product page.
-
-Make these three sections appear depending on if isLoading is true, or else if error message is a string (or not if its `null`) or else display the product data.
-
-Once you've gotten this to work, experiment with changing the data properties accordingly and make sure you're conditions work as expected, after experimenting you should put isLoading to `false` and error to `null` and only focus on the product page.
-
-
-### Breadcrumb & Title
-
-The next step is to fix the breadcrumb, replace the CATEGORY and TITLE with the real data using `{{ data_property }}` syntax and also do the same with the product title on display in various locations.
-
-### List rendering
-
-Next is the need to render lists. You have a list of colors, for each color you have a list of images and sizes. For each size you have data on available stock.
-
-### Active image & Stock
-Assume for now that the current color is the first (and in todays project only)  color, assume that the size chosen is L and assume that the chosen image is the first image. Tomorrow we will add event listeners to change these and re-render our content accordingly.
-
-### RAW HTML Rendering
-THe product description comes as raw html and needs to be inserted into the page in a proper way, make sure to do that.
-
 
 ### Product Data
 ```js
@@ -89,6 +66,42 @@ THe product description comes as raw html and needs to be inserted into the page
   description: "<p>Salt makes awesome T-Shirts. Get yo'self one immediately before they run out. Go on, don't be shy.</p><p>We take orders fo sure!</p>"
 }
 ```
+
+
+
+## 1. Conditional Rendering
+
+Once you run this branch as-is you will see that both "LOADING" and "ERROR MESSAGE" is on display as well as the product page.
+
+1. Make sure to copy-paste the Product Data from above in the data-object
+2. Make the three sections appear depending on if isLoading is true, or else if error message is a string (or not if its `null`) or else display the product data.
+3. Once you've gotten this to work, experiment with changing the data properties (`isLoading` and `error`) accordingly and make sure you're conditions work as expected, after experimenting you should put isLoading to `false` and error to `null` and only focus on the product page.
+
+
+## 2. Breadcrumb & Title
+
+The next step is to fix the breadcrumb (look for element with class `breadcrumb`), replace the CATEGORY and TITLE with the real data using `{{ data_property }}` syntax and also do the same with the product title on display in various locations.
+
+1. Change SALT-MERCH / CATEGORY / TITLE to real values
+2. Change the PRODUCT TITLE in the big letters on top of the product to real values
+3. Change the PRODUCT TITLE in the button "Add PRODUCT TITLE To Cart" to real values
+
+## 3. List rendering
+
+Next is the need to render lists. You have a list of colors, for each color you have a list of images and sizes. For each size you have data on available stock.
+
+1. Change the element with class "selectable-product-colors" to render using `v-for` each available color, make sure to utilize colors[i].colorhex to paint the square dynamically. (Observe in this lab there's only one available color, but make sure to use v-for anyway!)
+2. Change the elements with class "selectable-product-sizes" to render using v-for each size in *chosen color*\*
+3. Change the elements with class "selectable-product-imgs"to render using v-for each image in *chosen color*\*
+
+*\* chosen color can be hardcoded to be index 0 of available colors, which in this lab is just one: black*
+
+## 4. Active image & Stock
+Assume for now that the current color is the first (and in todays project only)  color, assume that the size chosen is L and assume that the chosen image is the first image. Tomorrow we will add event listeners to change these and re-render our content accordingly. For now make the above mentioned assumption and do the following:
+1. Change the element with class "selected-product-img" and make it get its src-value from the product data with the above mentioned assumptions.
+
+## 5. RAW HTML Rendering
+The product description comes as raw html and needs to be inserted into the page in a proper way, make sure to do that.
 
 
 ## Bonus Task: Create project from scratch.
