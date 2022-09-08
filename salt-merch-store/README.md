@@ -21,7 +21,7 @@ npm run lint
 ```
 
 
-## Task of the day
+## Focus of the day
 
 Today, the focus is solely on building the single product page.
 
@@ -69,7 +69,7 @@ Most of the raw HTML is provided to you with hardcoded data. Your task is to uti
 
 
 
-## 1. Conditional Rendering
+## Task 1. Conditional Rendering
 
 Once you run this branch as-is you will see that both "LOADING" and "ERROR MESSAGE" is on display as well as the product page.
 
@@ -78,7 +78,7 @@ Once you run this branch as-is you will see that both "LOADING" and "ERROR MESSA
 3. Once you've gotten this to work, experiment with changing the data properties (`isLoading` and `error`) accordingly and make sure you're conditions work as expected, after experimenting you should put isLoading to `false` and error to `null` and only focus on the product page.
 
 
-## 2. Breadcrumb & Title
+## Task 2. Breadcrumb & Title
 
 The next step is to fix the breadcrumb (look for element with class `breadcrumb`), replace the CATEGORY and TITLE with the real data using `{{ data_property }}` syntax and also do the same with the product title on display in various locations.
 
@@ -86,7 +86,7 @@ The next step is to fix the breadcrumb (look for element with class `breadcrumb`
 2. Change the PRODUCT TITLE in the big letters on top of the product to real values
 3. Change the PRODUCT TITLE in the button "Add PRODUCT TITLE To Cart" to real values
 
-## 3. List rendering
+## Task 3. List rendering
 
 Next is the need to render lists. You have a list of colors, for each color you have a list of images and sizes. For each size you have data on available stock.
 
@@ -96,11 +96,11 @@ Next is the need to render lists. You have a list of colors, for each color you 
 
 *\* chosen color can be hardcoded to be index 0 of available colors, which in this lab is just one: black*
 
-## 4. Active image & Stock
+## Task 4. Active image & Stock
 Assume for now that the current color is the first (and in todays project only)  color, assume that the size chosen is L and assume that the chosen image is the first image. Tomorrow we will add event listeners to change these and re-render our content accordingly. For now make the above mentioned assumption and do the following:
 1. Change the element with class "selected-product-img" and make it get its src-value from the product data with the above mentioned assumptions.
 
-## 5. RAW HTML Rendering
+## Task 5. RAW HTML Rendering
 The product description comes as raw html and needs to be inserted into the page in a proper way, make sure to do that.
 
 
