@@ -13,7 +13,7 @@ Products.vue does a couple of things. Given product data, it renders its title a
 
 1. Use the setData for mounting the component to have products be null and error null and isLoading null so that the component should render the `Loading...` screen and test that it does
 2. Add an error object in error and test that it renders it correctly
-3. Given product data, see that the correct title is rendered and also the correct description
+3. Given product data, see that the correct title is rendered and also the correct description (in order to test description, make sure to trim the wrapper html by calling `.replaceAll(/\n|\t|( {2})/g, '')` on the string.)
 
 
 ## Task 2: Testing ProductSelectables.vue
