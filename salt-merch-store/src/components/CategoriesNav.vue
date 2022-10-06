@@ -1,6 +1,6 @@
 <template>
-  <p class="mt-5">Categories.</p>
-  <div v-bind="$attrs">
+  <p class="mt-5" data-testid="root-wo-attr">Categories.</p>
+  <div v-bind="$attrs" data-testid="root-w-attr">
     <h2 class="mb-5">
       popular categories.
     </h2>
@@ -12,9 +12,3 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-
-}
-</script>
-

@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import Products from '@/pages/products.vue'
 import products from '@/assets/db/products.json'
 
-describe.skip('Products.vue', () => {
+describe('Products.vue', () => {
   it('Renders the Loading... screen when isLoading is set to true', async () => {
     const wrapper = mount(Products)
     await new Promise( (done, err) => 

@@ -9,6 +9,7 @@
     <!-- PICTURE OVERLAY MAKE IT INTO A NAMED SLOT -->
     <slot name="overlay" />
     <div
+      data-testid="default-slot-container"
       class="position-absolute w-100 h-100 justify-content-center align-items-center d-flex"
       style="top: 0%"
     >

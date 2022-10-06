@@ -1,6 +1,7 @@
 <template>
   <template v-if="selectablesType == 'images'">
     <img
+      data-testid="selectable"
       v-for="image, i in selectables"
       :key="'selectable-image-' + i"
       :src="require('@/assets/' + image)"
@@ -22,6 +23,7 @@
   </template>
   <template v-else-if="selectablesType == 'colors'">
     <div
+      data-testid="selectable"
       v-for="color, i in selectables"
       :key="'selectable-img-' + i"
       class="selectable-product-colors border"
