@@ -6,7 +6,7 @@
     <div class="container-fluid px-0 best-sellers">
       <div class="row">
         <router-link
-          to="/products/salty-black-jacket"
+          :to="{ name: 'products', params: { slug: 'salty-black-jacket' } }"
           class="col-3 best-seller text-decoration-none text-dark"
         >
           <img
@@ -16,7 +16,7 @@
           <p>Salty Black / <br> Jacket</p>
         </router-link>
         <router-link
-          to="/products/tshirt-salty"
+          :to="{ name: 'products', params: { slug: 'tshirt-salty' } }"
           class="col-3 best-seller text-decoration-none text-dark"
         >
           <img
@@ -26,7 +26,7 @@
           <p>Psyche Blue / <br> T-shirt</p>
         </router-link>
         <router-link
-          to="/products/one-size-baseball"
+          :to="{ name: 'products', params: { slug: 'one-size-baseball' } }"
           class="col-3 best-seller text-decoration-none text-dark"
         >
           <img
@@ -36,7 +36,7 @@
           <p>One size / <br> Baseball cap</p>
         </router-link>
         <router-link
-          to="/products/baggie-salt-laptop-bag"
+          :to="{ name: 'products', params: { slug: 'baggie-salt-laptop-bag' } }"
           class="col-3 best-seller text-decoration-none text-dark"
         >
           <img
