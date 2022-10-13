@@ -1,5 +1,19 @@
 <template>
-  <salt-header />
+  <router-view
+    v-slot="{ Component }"
+    name="header"
+  >
+    <transition
+      name="fade"
+      mode="out-in"
+    >
+      <div :key="$route.name">
+        <component
+          :is="Component"
+        />
+      </div>
+    </transition>
+  </router-view>
   <router-view v-slot="{ Component }">
     <transition
       name="fade"
@@ -12,7 +26,9 @@
       </div>
     </transition>
   </router-view>
-  <salt-footer />
+  <router-view name="footer">
+    <salt-footer />
+  </router-view>
 </template>
 <script>
 import SaltHeader from '@/components/SaltHeader.vue'

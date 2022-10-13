@@ -44,9 +44,6 @@ export default {
     PictureOverlayedWithText,
     CategoriesNav,
   },
-  props: {
-    msg: String
-  },
   data () {
     return {
       tagline: 'Timeless Love'

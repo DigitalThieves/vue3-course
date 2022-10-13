@@ -5,12 +5,7 @@
     </div>
     <div class="container">
       <div class="row justify-content-center py-4">
-        <div class="col-4 d-none d-md-flex px-4 text-left align-items-center">
-          <!-- <p class="text-left mb-0 d-block">
-            <span class="mb-0 text-uppercase">Dark</span>
-            <span class="mb-0 text-uppercase px-3">Light</span>
-          </p> -->
-        </div>
+        <div class="col-4 d-none d-md-flex px-4 text-left align-items-center" />
         <router-link
           to="/"
           class="col-4 justify-content-center"
@@ -21,12 +16,6 @@
           >
         </router-link>
         <div class="col-4 justify-content-end text-end px-4 align-items-center d-flex">
-          <!-- <div class="px-3 d-inline-block">
-            <svg style="width: 18px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path
-                d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z" />
-            </svg>
-          </div> -->
           <cart-icon />
         </div>
       </div>
@@ -35,28 +24,65 @@
     <div class="container border-left">
       <nav class="row justify-content-center">
         <router-link
-          class="navitem col-3 border-secondary border-right p-4 text-center pointer text-decoration-none text-dark"
-          to="/categories/hats"
+          v-slot="{ isActive, navigate }"
+          class=""
+          :to="{
+            name: 'categories',
+            params: {
+              category: 'hats'
+            }
+          }"
+          custom
         >
-          <p class="mb-0">Hats</p>
+          <p
+            class="mb-0 navitem col-3 border-secondary border-right p-4 text-center pointer text-decoration-none text-dark"
+            :class="isActive ? 'fw-bold' : ''"
+            @click="navigate"
+          >
+            Hats
+          </p>
         </router-link>
         <router-link
-          class="navitem col-3 border-secondary border-right p-4 text-center pointer text-decoration-none text-dark"
+          v-slot="{ isActive, navigate }"
+          class=""
           to="/categories/jackets"
+          custom
         >
-          <p class="mb-0">Jackets</p>
+          <p
+            class="mb-0 navitem col-3 border-secondary border-right p-4 text-center pointer text-decoration-none text-dark"
+            :class="isActive ? 'fw-bold' : ''"
+            @click="navigate"
+          >
+            Jackets
+          </p>
         </router-link>
         <router-link
-          class="navitem col-3 border-secondary border-right p-4 text-center pointer text-decoration-none text-dark"
+          v-slot="{ isActive, navigate }"
+          class=""
           to="/categories/tshirts"
+          custom
         >
-          <p class="mb-0">T-shirts</p>
+          <p
+            class="mb-0 navitem col-3 border-secondary border-right p-4 text-center pointer text-decoration-none text-dark"
+            :class="isActive ? 'fw-bold' : ''"
+            @click="navigate"
+          >
+            T-shirts
+          </p>
         </router-link>
         <router-link
-          class="navitem col-3 border-secondary border-right p-4 text-center pointer text-decoration-none text-dark"
+          v-slot="{ isActive, navigate }"
+          class=""
           to="/categories/bags"
+          custom
         >
-          <p class="mb-0">Bags</p>
+          <p
+            class="mb-0 navitem col-3 border-secondary border-right p-4 text-center pointer text-decoration-none text-dark"
+            :class="isActive ? 'fw-bold' : ''"
+            @click="navigate"
+          >
+            Bags
+          </p>
         </router-link>
       </nav>
     </div>
