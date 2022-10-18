@@ -2,18 +2,18 @@
 
 ## Focus of the day
 
-Yesterday, you created components and today you will write tests for them! Yippie!
+Today we will continue building our application from where we started two days ago. We will add various routes and link to them using the RouterLink component. Some routes will be dynamic and others will be static and one route will be forcing us to use named views. Let's go, it'll be fun!
 
 
-## Task 1: Testing products.vue
+## Task 1: Setting up router and the homepage
+Your first job will be to install Vue Router and add it to the project and add homepage to path '/'
 
-Products.vue does a couple of things. Given product data, it renders its title and it's description. Given various indexes for colors and images it renders a large image and while it loads data it renders "Loading..." and given an error it renders the error message.
+1. Install `vue-router` using npm
+2. Create a `router.js` and set it up properly
+3. In `router.js` import the `home-page.vue` component and add it to path '/'
+4. Import and use router.js into main.js
+5. Add RouterView to `App.vue`
 
-### What to test for:
-
-1. Use the setData for mounting the component to have products be null and error null and isLoading = true so that the component should render the `Loading...` screen and test that it does
-2. Add an error object in error and test that it renders it correctly
-3. Given product data, see that the correct title is rendered and also the correct description
 
 
 ## Task 2: Testing ProductSelectables.vue
