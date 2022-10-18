@@ -15,7 +15,6 @@ Your first job will be to install Vue Router and add it to the project and add h
 5. Add RouterView to `App.vue`
 
 
-
 ## Task 2: Testing ProductSelectables.vue
 
 The ProductSelectables component does a couple of things, it does

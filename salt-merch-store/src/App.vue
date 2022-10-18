@@ -1,14 +1,9 @@
 <template>
-  <products class="my-5" />
+  <RouterView />
 </template>
 <script>
-import products from '@/pages/products.vue'
 
-export default {
-  components: {
-    products
-  }
-}
+export default {}
 </script>
 
 
