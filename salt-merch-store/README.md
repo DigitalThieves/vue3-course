@@ -1,13 +1,26 @@
-# SALT MERCH STORE DAY 2
+# SALT MERCH STORE DAY 3
 
 ## Focus of the day
 
-Yesterday, you created components and today you will write tests for them! Yippie!
+Today we will continue building our application from where we started two days ago. We will add various routes and link to them using the RouterLink component. Some routes will be dynamic and others will be static and one route will be forcing us to use named views. Let's go, it'll be fun!
 
 
-## Task 1: Testing products.vue
+## Task 1: Setting up router and the homepage
+Your first job will be to install Vue Router and add it to the project and add homepage to path '/'
 
-Products.vue does a couple of things. Given product data, it renders its title and it's description. Given various indexes for colors and images it renders a large image and while it loads data it renders "Loading..." and given an error it renders the error message.
+1. Install `vue-router` using npm
+2. Create a `router.js` and set it up properly
+3. In `router.js` import the `home-page.vue` component and add it to path '/' in the routes-array
+4. Import and use router.js into main.js
+5. Add RouterView to `App.vue` and remove the unneeded components from the file.
+
+
+## Task 2: Set up Product Page
+
+1. Add a new route in your routes-object inside `router.js` with base-path '/products/' but extend it with a parameter after the last forward-slash. the parameter can be named slug but it doesn't matter.
+2. Import the `products.vue` component and add it to the path in previous step
+3. In `products.vue` you can import productClient using `import productClient from '@/api-client'`
+4. In mounted-hook (in products.vue) you should use the product slug from the route-parameter and use productClient.getProductBySlug() function to get the product data (the function returns a promise that resolves to product data after .5s) for the slug and set it to the reactive `product` property that is used in the template.
 
 ### What to test for:
 
