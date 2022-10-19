@@ -6,15 +6,15 @@
     <div class="row">
       <div class="col-12 text-left">
         <p class="text-uppercase fs-12 fw-semibold">
-          <router-link
+          <a
             class="text-decoration-none text-dark"
-            to="/"
+            href="/"
           >
             SALT MERCH
-          </router-link> /
+          </a> /
           <router-link
             class="text-decoration-none text-dark"
-            :to="'/categories/' + category.category"
+            href="/categories/<category-slug>"
           >
             {{ category.category }}
           </router-link>
