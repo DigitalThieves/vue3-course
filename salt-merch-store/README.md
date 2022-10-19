@@ -30,6 +30,7 @@ Your first job will be to install Vue Router and add it to the project and add h
 1. Much like in task 2, set up a new route with path `'/categories/<category-slug>'` (obv change <category-slug> to something sensible) and make it use page component `categories.vue`
 2. Uncomment and use the productClient and it's `getProductsByCategory()` function to get all products by category slug. (client returns a promise which resolves to data)
 3. Change all the placeholder values in the component to use real data.
+4. Change the anchor links to use RouterLink instead
 
 
 ## Task 4: Set up All Products (collection) Page
@@ -37,27 +38,11 @@ Your first job will be to install Vue Router and add it to the project and add h
 1. Almost identical to task 3 but path should be `'/collection'` and productClient has a function named `getAllProducts()` that should be used here. Make sure to change all placeholder values.
 
 
-### Task 5: Add Header and Footer to page
+## Task 5: Add Header and Footer to page
 
+1. In `App.vue`, import both `SaltHeader.vue` and `SaltFooter.vue` and use them outside of the RouterView component (header before, footer after).
+2. Go into `SaltHeader.vue` and wrap the buttons inside RouterLink
 
+## Task 6. Make sure you have no anchor links
+Do some housekeeping and make sure you have no anchor links and are instead using the RouterLink component to link to various pages in your App.
 
-
-### What to test for:
-
-1. Given an array of sizes and `selectableTypes = 'sizes'` make sure it renders the right amount of selectables and the correct html for each size given its type (see the provided example)
-2. Given an activeIndex, compare that the rendered size with same index has selected-styling
-3. If user clicks on one of the selectables, make sure component emits 'updated:activeIndex' event with correct payload
-3. Repeat above for images and colors
-
-
-## Task 3: Testing PictureOverlayedWithText.vue
-This is a simple component with two slots, one named and one default. Test that both are outputting what you expect them to put out. (Search the web on how to provide slots to vue/test-utils)
-
-## Task 4: Testing CategoriesNav.vue
-This is a simple component that given attributes puts it one of it's root but not on the other. Test that the attributes are added to the correct root element.
-
-
-## Random Tips:
-1. Use selectors like '.classname > div' if that suits you, or else feel free to add test attributes like `data-testid="elementId"` to the components you want to test to easier find what you're looking for.
-2. There is a find() and a findAll() method for doing query selections, use them according to your needs
-3. There are a couple of tests provided to you that are failing because they're not fully implemented, but if you study them you will see that they are half-finished. By finishing them first, you should be able to figure out how to write the rest of the tests

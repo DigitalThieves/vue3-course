@@ -6,12 +6,12 @@
     <div class="row">
       <div class="col-12 text-left">
         <p class="text-uppercase fs-12 fw-semibold">
-          <router-link
+          <a
             class="text-decoration-none text-dark"
-            to="/"
+            href="/"
           >
             SALT MERCH
-          </router-link>
+          </a>
         </p>
       </div>
       <div class="col-12 px-5">
@@ -30,15 +30,12 @@
     <h1>
       Loading...
     </h1>
-    <p>
-      Category: {{ $route.params.category }}
-    </p>
   </div>
 </template>
 
 <script>
 import CollectionView from '@/components/CollectionView.vue'
-import client from '@/services/api-client'
+// import productClient from '@/services/api-client'
 
 export default {
   name: 'App',
@@ -47,7 +44,7 @@ export default {
   },
   async beforeRouteUpdate(_, __, next) {
     this.collection = null
-    this.collection = await client.getAllProducts()
+    setTimeout(() => this.collection = { products: [] }, 5000)
     next()
   },
   data () {
@@ -56,7 +53,7 @@ export default {
     }
   },
   async mounted () {
-    this.collection = await client.getAllProducts()
+    setTimeout(() => this.collection = { products: [] }, 5000)
   },
 }
 </script>

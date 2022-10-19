@@ -6,18 +6,18 @@
     <div class="row">
       <div class="col-12 text-left">
         <p class="text-uppercase fs-12 fw-semibold">
-          <router-link
+          <a
             class="text-decoration-none text-dark"
-            to="/"
+            href="/"
           >
             SALT MERCH
-          </router-link> /
-          <router-link
+          </a> /
+          <a
             class="text-decoration-none text-dark"
-            :to="'/categories/' + category.category"
+            href="/categories/<category-slug>"
           >
             {{ '< CATEGORY SLUG >' }}
-          </router-link>
+          </a>
         </p>
       </div>
       <div class="col-12 px-5">
@@ -37,14 +37,14 @@
       Loading...
     </h1>
     <p>
-      Category: {{ '< Category Slug >' }}
+      Category: {{ '< Route Parameter Value >' }}
     </p>
   </div>
 </template>
 
 <script>
 import CollectionView from '@/components/CollectionView.vue'
-// import productClient from '@/services/api-client'
+// import productClient from '@/api-client'
 
 export default {
   name: 'App',
@@ -53,6 +53,7 @@ export default {
   },
   async beforeRouteUpdate(to, _, next) {
     this.category = null
+    setTimeout(() => this.category = { products: [] }, 5000)
     next()
   },
   data () {
