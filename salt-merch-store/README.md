@@ -15,6 +15,22 @@ Your first job will be to install Vue Router and add it to the project and add h
 5. Add RouterView to `App.vue` and remove the unneeded components from the file.
 
 
+## Task 2: Set up Product Page
+
+1. Add a new route in your routes-object inside `router.js` with base-path '/products/' but extend it with a parameter after the last forward-slash. the parameter can be named slug but it doesn't matter.
+2. Import the `products.vue` component and add it to the path in previous step
+3. In `products.vue` delete the object from the reactive `product` property in the `data ()` function and instead set it to `null`
+3. In `products.vue` you can import productClient using `import productClient from '@/api-client'`
+4. In mounted-hook (in products.vue) you should use the product slug from the route-parameter and use productClient.getProductBySlug() function to get the product data (the function returns a promise that resolves to product data after .5s) for the slug and set it to the reactive `product` property that is used in the template.
+5. [Visit /products/one-size-baseball](http://localhost:8080/products/one-size-baseball) to test it and make sure it works
+
+### What to test for:
+
+1. Use the setData for mounting the component to have products be null and error null and isLoading null so that the component should render the `Loading...` screen and test that it does
+2. Add an error object in error and test that it renders it correctly
+3. Given product data, see that the correct title is rendered and also the correct description (in order to test description, make sure to trim the wrapper html by calling `.replaceAll(/\n|\t|( {2})/g, '')` on the string.)
+
+
 
 ## Task 2: Set up Product Page
 
