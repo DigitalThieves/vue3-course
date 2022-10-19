@@ -16,13 +16,13 @@
             class="text-decoration-none text-dark"
             :to="'/categories/' + category.category"
           >
-            {{ category.category }}
+            {{ '< CATEGORY PLACEHOLDER >' }}
           </router-link>
         </p>
       </div>
       <div class="col-12 px-5">
         <h2>
-          {{ category.title }}
+          {{ '< Category Title Placeholder >' }}
         </h2>
         <p> {{ category.description }} </p>
       </div>
