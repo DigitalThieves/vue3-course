@@ -37,14 +37,14 @@
       Loading...
     </h1>
     <p>
-      Category: {{ $route.params.category }}
+      Category: {{ $route.params.slug }}
     </p>
   </div>
 </template>
 
 <script>
 import CollectionView from '@/components/CollectionView.vue'
-import client from '@/services/api-client'
+import productClient from '@/api-client'
 
 export default {
   name: 'App',
@@ -53,7 +53,7 @@ export default {
   },
   async beforeRouteUpdate(to, _, next) {
     this.category = null
-    this.category = await client.getProductsByCategory(to.params.category)
+    this.category = await productClient.getProductsByCategory(this.$route.params.slug)
     next()
   },
   data () {
@@ -62,7 +62,7 @@ export default {
     }
   },
   async mounted () {
-    this.category = await client.getProductsByCategory(this.$route.params.category)
+    this.category = await productClient.getProductsByCategory(this.$route.params.slug)
   },
 }
 </script>
