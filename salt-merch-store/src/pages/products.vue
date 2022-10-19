@@ -162,12 +162,18 @@ export default {
   },
   computed: {
     currentColor () {
+      if (!this.product)
+        return null
       return this.product.colors[this.colorIndex]
     },
     currentImage () {
+      if (!this.currentColor)
+        return null
       return this.currentColor.images[this.imgIndex]
     },
     currentSize () {
+      if (!this.currentColor)
+        return null
       return this.currentColor.sizes[this.sizeIndex]
     }
   },
