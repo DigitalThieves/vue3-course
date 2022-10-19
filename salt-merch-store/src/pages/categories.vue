@@ -16,7 +16,7 @@
             class="text-decoration-none text-dark"
             :to="'/categories/' + category.category"
           >
-            {{ '< CATEGORY PLACEHOLDER >' }}
+            {{ '< CATEGORY SLUG >' }}
           </router-link>
         </p>
       </div>
@@ -24,7 +24,7 @@
         <h2>
           {{ '< Category Title Placeholder >' }}
         </h2>
-        <p> {{ category.description }} </p>
+        <p> {{ '< Category Description >' }} </p>
       </div>
     </div>
     <collection-view :collection="category.products" />
@@ -37,14 +37,14 @@
       Loading...
     </h1>
     <p>
-      Category: {{ $route.params.category }}
+      Category: {{ '< Category Slug >' }}
     </p>
   </div>
 </template>
 
 <script>
 import CollectionView from '@/components/CollectionView.vue'
-import client from '@/services/api-client'
+// import productClient from '@/services/api-client'
 
 export default {
   name: 'App',
@@ -53,7 +53,6 @@ export default {
   },
   async beforeRouteUpdate(to, _, next) {
     this.category = null
-    this.category = await client.getProductsByCategory(to.params.category)
     next()
   },
   data () {
@@ -62,7 +61,7 @@ export default {
     }
   },
   async mounted () {
-    this.category = await client.getProductsByCategory(this.$route.params.category)
+    setTimeout(() => this.category = { products: [] }, 5000)
   },
 }
 </script>

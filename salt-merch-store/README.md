@@ -25,6 +25,23 @@ Your first job will be to install Vue Router and add it to the project and add h
 5. [Visit /products/one-size-baseball](http://localhost:8080/products/one-size-baseball) to test it and make sure it works
 
 
+## Task 3: Set up Category Page
+
+1. Much like in task 2, set up a new route with path `'/categories/<category-slug>'` (obv change <category-slug> to something sensible) and make it use page component `categories.vue`
+2. Uncomment and use the productClient and it's `getProductsByCategory()` function to get all products by category slug. (client returns a promise which resolves to data)
+3. Change all the placeholder values in the component to use real data.
+
+
+## Task 4: Set up All Products (collection) Page
+
+1. Almost identical to task 3 but path should be `'/collection'` and productClient has a function named `getAllProducts()` that should be used here. Make sure to change all placeholder values.
+
+
+### Task 5: Add Header and Footer to page
+
+
+
+
 ### What to test for:
 
 1. Given an array of sizes and `selectableTypes = 'sizes'` make sure it renders the right amount of selectables and the correct html for each size given its type (see the provided example)
