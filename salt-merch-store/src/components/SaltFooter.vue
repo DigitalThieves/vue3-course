@@ -8,12 +8,12 @@
             <hr class="my-4">
             <div class="d-flex w-100 justify-content-between">
               <div class="col-4">
-                <router-link
-                  to="/about"
+                <a
+                  href="/about"
                   class="text-decoration-none text-white"
                 >
                   <p> ABOUT SALT </p>
-                </router-link>
+                </a>
               </div>
               <div class="col-4">
                 <p> FEMALE </p>

@@ -43,6 +43,13 @@ Your first job will be to install Vue Router and add it to the project and add h
 1. In `App.vue`, import both `SaltHeader.vue` and `SaltFooter.vue` and use them outside of the RouterView component (header before, footer after).
 2. Go into `SaltHeader.vue` and wrap the buttons inside RouterLink
 
-## Task 6. Make sure you have no anchor links
+
+## Task 6: Make sure you have no anchor links
 Do some housekeeping and make sure you have no anchor links and are instead using the RouterLink component to link to various pages in your App.
 
+
+## Task 7: Named RouterViews with an /about page
+1. Refactor `SaltHeader.vue` in `App.vue` inside a named RouteView
+2. Change all your routes in `router.js` to use `components: { default: ..., }` syntax instead of what we did previously
+3. Add a new route with `path: '/about'` and page component `about-salt.vue` as default and `AltHeader.vue` inte the named view for Header
+4. Add a RouterLink to the about-page in the `SaltFooter.vue`
