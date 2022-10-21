@@ -32,6 +32,7 @@ Your first job will be to install Vue Router and add it to the project and add h
 2. Uncomment and use the productClient and it's `getProductsByCategory()` function to get all products by category slug. (client returns a promise which resolves to data)
 3. Change all the placeholder values in the component to use real data.
 4. Change the anchor links to use RouterLink instead
+5. Open `CategoriesNav.vue` and wrap the buttons with RouterLink pointing to the correct categories (if you feel like it, you can render the  buttons dynamically based on available categories)
 
 
 ## Task 4: Set up All Products (collection) Page
