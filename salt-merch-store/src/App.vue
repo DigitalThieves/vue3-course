@@ -1,9 +1,18 @@
 <template>
+  <salt-header />
   <RouterView />
+  <salt-footer />
 </template>
 <script>
+import SaltHeader from '@/components/SaltHeader.vue'
+import SaltFooter from '@/components/SaltFooter.vue'
 
-export default {}
+export default {
+  components: {
+    SaltHeader,
+    SaltFooter
+  }
+}
 </script>
 
 
