@@ -23,7 +23,17 @@
     <div class="row text-left">
       <div class="col-12">
         <p class="text-uppercase fs-12 fw-semibold">
-          <router-link class="text-decoration-none text-dark" :to="{name: 'home'}"> SALT MERCH </router-link> / <router-link class="text-decoration-none text-dark" :to="{ name: 'categories', params: { slug: product.category } }"> {{ product.category }} </router-link> / {{ product.title }}
+          <router-link
+            class="text-decoration-none text-dark"
+            :to="{ name: 'home' }"
+          >
+            SALT MERCH
+          </router-link> / <router-link
+            class="text-decoration-none text-dark"
+            :to="{ name: 'categories', params: { slug: product.category } }"
+          >
+            {{ product.category }}
+          </router-link> / {{ product.title }}
         </p>
       </div>
       <div class="col-4">
@@ -79,7 +89,10 @@
           Add {{ product.title }} To Cart
         </button>
         <hr class="my-3">
-        <div data-testid="description" v-html="product.description" />
+        <div
+          data-testid="description"
+          v-html="product.description"
+        />
       </div>
     </div>
   </div>

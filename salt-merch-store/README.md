@@ -31,12 +31,13 @@ Your first job will be to install Vue Router and add it to the project and add h
 2. Uncomment and use the productClient and it's `getProductsByCategory()` function to get all products by category slug. (client returns a promise which resolves to data)
 3. Change all the placeholder values in the component to use real data.
 4. Change the anchor links to use RouterLink instead
-5. Open `CategoriesNav.vue` and make the buttons be routed using RouterLink pointing to the correct categories (if you feel like it, you can render the  buttons dynamically based on available categories in the data as well) 
+5. Open `CategoriesNav.vue` and use RouterLink to make the buttons link to the corresponding category (if you feel like it, you can render the  buttons dynamically based on available categories)
 
 
 ## Task 4: Set up All Products (collection) Page
 
 1. Almost identical to task 3 but path should be `'/collection'` and productClient has a function named `getAllProducts()` that should be used here. Make sure to change all placeholder values.
+2. Make sure your usage of PictureOverlayedWithText includes a router-link to the collection page
 
 
 ## Task 5: Add Header and Footer to page

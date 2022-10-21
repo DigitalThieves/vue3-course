@@ -14,9 +14,11 @@
         <h1 class="title-1 fw-bold mb-3">
           Salt Merch
         </h1>
-        <button class="bg-white px-5 py-3">
-          SHOP THE COLLECTION
-        </button>
+        <router-link v-slot="{ navigate }" to="/collection">
+          <button class="bg-white px-5 py-3" @click="navigate">
+            SHOP THE COLLECTION
+          </button>
+        </router-link>
       </div>
     </picture-overlayed-with-text>
     <div class="row">

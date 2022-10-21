@@ -35,7 +35,7 @@
 
 <script>
 import CollectionView from '@/components/CollectionView.vue'
-// import productClient from '@/services/api-client'
+import productClient from '@/api-client'
 
 export default {
   name: 'App',
@@ -44,7 +44,7 @@ export default {
   },
   async beforeRouteUpdate(_, __, next) {
     this.collection = null
-    setTimeout(() => this.collection = { products: [] }, 5000)
+    this.collection = await productClient.getAllProducts()
     next()
   },
   data () {
@@ -53,7 +53,7 @@ export default {
     }
   },
   async mounted () {
-    setTimeout(() => this.collection = { products: [] }, 5000)
+    this.collection = await productClient.getAllProducts()
   },
 }
 </script>
