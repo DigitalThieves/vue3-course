@@ -14,7 +14,7 @@
           </a> /
           <router-link
             class="text-decoration-none text-dark"
-            href="/categories/<category-slug>"
+            :to="'/categories/' + category.category"
           >
             {{ category.category }}
           </router-link>
