@@ -37,6 +37,23 @@ describe('Testing Products Page', () => {
     expect(title).toEqual(prod.title)
     expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
   })
+  it('Calls getProductBySlug and displays correct title', async () => {
+    const prod = products.find(el => el.slug = 'salty-black-jacket')
+    client.getProductBySlug.mockResolvedValueOnce(prod)
+    const wrapper = mount(Products, {
+      global: {
+        plugins: [router],
+        stubs: {
+          RouterLink: {
+            template: '<arod><slot /></arod>'
+          }
+        }
+      }
+    })
+    await flushPromises()
+    const title = wrapper.find('arod')
+    expect(title).toExist
+  })
   it('Calls getProductBySlug and displays loading while waiting...', async () => {
     const prod = products[2]
     client.getProductBySlug.mockImplementation(() => new Promise (done => setTimeout(() => done(prod), 1500)) )
