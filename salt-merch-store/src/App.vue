@@ -1,15 +1,13 @@
 <template>
-  <salt-header />
+  <router-view name="header" />
   <RouterView />
   <salt-footer />
 </template>
 <script>
-import SaltHeader from '@/components/SaltHeader.vue'
 import SaltFooter from '@/components/SaltFooter.vue'
 
 export default {
   components: {
-    SaltHeader,
     SaltFooter
   }
 }

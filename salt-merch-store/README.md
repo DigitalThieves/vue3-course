@@ -55,4 +55,3 @@ Do some housekeeping and make sure you have no anchor links and are instead usin
 2. Change all your routes in `router.js` to use `components: { default: ..., }` syntax instead of what we did previously
 3. Add a new route with `path: '/about'` and page component `about-salt.vue` as default and `AltHeader.vue` inte the named view for Header
 4. Add a RouterLink to the about-page in the `SaltFooter.vue`
-
