@@ -3,46 +3,53 @@ import products from '@/assets/db/products.json'
 import { mount } from '@vue/test-utils'
 import client from '@/api-client'
 import flushPromises from 'flush-promises'
-const router = {
-  install: app => {
-    app.config.globalProperties.$route = {
-      params: {
-        slug: 'salty-black-jacket'
-      }
-    }
-  }
-}
+import router from '@/router'
 
 jest.mock('@/api-client')
 beforeEach(() => {
   jest.clearAllMocks()
 })
 
+describe('Testing Router File', () => {
+  it('Should be a Vue Plugin', () => {
+    expect(router).toBeTruthy()
+    expect(router.currentRoute).toBeTruthy()
+    expect(
+      router.options.routes.find(el => el.path.startsWith('/products/:'))
+    ).toBeTruthy()
+  })
+})
 describe('Testing Products Page', () => {
-  it('Calls getProductBySlug and displays correct title', async () => {
+  it('Calls getProductBySlug and displays correct title and description', async () => {
     const prod = products.find(el => el.slug = 'salty-black-jacket')
     client.getProductBySlug.mockResolvedValueOnce(prod)
     const wrapper = mount(Products, {
       global: {
         plugins: [router],
-        stubs: {
-          RouterLink: {
-            template: '<a><slot /></a>'
-          }
-        }
       }
     })
     await flushPromises()
     const title = wrapper.find('[data-testid="title"]').text()
     expect(title).toEqual(prod.title)
+    const description = wrapper.find('[data-testid="description"]').html()
+    expect(description.replace(/\s/g, '')).toContain(prod.description.replace(/\s/g, ''))
     expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
   })
-  it('Calls getProductBySlug and displays correct title', async () => {
+
+  it('Tests that router link is being used properly in breadcrumbs', async () => {
     const prod = products.find(el => el.slug = 'salty-black-jacket')
     client.getProductBySlug.mockResolvedValueOnce(prod)
     const wrapper = mount(Products, {
       global: {
-        plugins: [router],
+        plugins: [{
+          install: app => {
+            app.config.globalProperties.$route = {
+              params: {
+                slug: 'salty-black-jacket'
+              }
+            }
+          }
+        }],
         stubs: {
           RouterLink: {
             template: '<a data-test-id="stubbed-link"><slot /></a>'
@@ -51,9 +58,12 @@ describe('Testing Products Page', () => {
       }
     })
     await flushPromises()
-    const title = wrapper.find('[data-test-id="stubbed-link"]')
-    expect(title).toBeDefined()
+    const title = wrapper.findAll('[data-test-id="stubbed-link"]')
+    expect(title.length).toBeGreaterThan(0)
+    expect(title[0].text()).toBe('SALT MERCH')
+    expect(title[1].text()).toBe(prod.category)
   })
+
   it('Calls getProductBySlug and displays loading while waiting...', async () => {
     const prod = products[2]
     client.getProductBySlug.mockImplementation(() => new Promise (done => setTimeout(() => done(prod), 1500)) )
@@ -76,11 +86,6 @@ describe('Testing Products Page', () => {
     const wrapper = mount(Products, {
       global: {
         plugins: [router],
-        stubs: {
-          RouterLink: {
-            template: '<a><slot /></a>'
-          }
-        }
       },
     })
     await flushPromises()
@@ -88,5 +93,4 @@ describe('Testing Products Page', () => {
     expect(title).toContain('error')
     expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
   })
-
 })
