@@ -1,4 +1,5 @@
 import Categories from '@/pages/categories'
+import categories from '@/assets/db/categories.json'
 import products from '@/assets/db/products.json'
 import { mount } from '@vue/test-utils'
 import client from '@/api-client'
@@ -12,20 +13,19 @@ beforeEach(() => {
 
 
 describe('Testing Router File', () => {
-  it('Should be a Vue Plugin', () => {
+  it('Should be a Vue Plugin with category route', () => {
     expect(router).toBeTruthy()
     expect(router.currentRoute).toBeTruthy()
     expect(
-      router.options.routes.find(el => el.path.startsWith('/products/:'))
+      router.options.routes.find(el => el.path.startsWith('/categories/:'))
     ).toBeTruthy()
   })
 })
 
 describe('Testing Products Page', () => {
-  it('Calls getProductBySlug and displays correct title and description', async () => {
-
-    const cat_prod = products.filter(el => el.category === category_slug )
-    const category = categories.filter(el => el.category === category_slug )[0] 
+  it('Calls getProductsByCategory and displays correct title and description', async () => {
+    const cat_prod = products.filter(el => el.category === 'bags' )
+    const category = categories.filter(el => el.category === 'bags' )[0] 
     const cat = { ...category, products: cat_prod }
     client.getProductsByCategory.mockResolvedValueOnce(cat)
     const wrapper = mount(Categories, {
@@ -35,22 +35,24 @@ describe('Testing Products Page', () => {
     })
     await flushPromises()
     const title = wrapper.find('[data-testid="title"]').text()
-    expect(title).toEqual(prod.title)
-    const description = wrapper.find('[data-testid="description"]').html()
-    expect(description.replace(/\s/g, '')).toContain(prod.description.replace(/\s/g, ''))
+    expect(title).toEqual(cat.title)
+    const description = wrapper.find('[data-testid="description"]').text()
+    expect(description).toContain(cat.description)
     expect(client.getProductsByCategory).toHaveBeenCalledTimes(1)
   })
 
   it('Tests that router link is being used properly in breadcrumbs', async () => {
-    const prod = products.find(el => el.slug = 'salty-black-jacket')
-    client.getProductBySlug.mockResolvedValueOnce(prod)
+    const cat_prod = products.filter(el => el.category === 'bags' )
+    const category = categories.filter(el => el.category === 'bags' )[0] 
+    const cat = { ...category, products: cat_prod }
+    client.getProductsByCategory.mockResolvedValueOnce(cat)
     const wrapper = mount(Categories, {
       global: {
         plugins: [{
           install: app => {
             app.config.globalProperties.$route = {
               params: {
-                slug: 'salty-black-jacket'
+                slug: category.category
               }
             }
           }
@@ -66,12 +68,13 @@ describe('Testing Products Page', () => {
     const title = wrapper.findAll('[data-test-id="stubbed-link"]')
     expect(title.length).toBeGreaterThan(0)
     expect(title[0].text()).toBe('SALT MERCH')
-    expect(title[1].text()).toBe(prod.category)
   })
 
-  it('Calls getProductBySlug and displays loading while waiting...', async () => {
-    const prod = products[2]
-    client.getProductBySlug.mockImplementation(() => new Promise (done => setTimeout(() => done(prod), 1500)) )
+  it('Calls getProductsByCategory and displays loading while waiting...', async () => {
+    const cat_prod = products.filter(el => el.category === 'bags' )
+    const category = categories.filter(el => el.category === 'bags' )[0] 
+    const cat = { ...category, products: cat_prod }
+    client.getProductsByCategory.mockImplementation(() => new Promise (done => setTimeout(() => done(cat), 1500)) )
     const wrapper = mount(Categories, {
       global: {
         plugins: [router],
@@ -84,10 +87,10 @@ describe('Testing Products Page', () => {
     })
     const title = wrapper.find('[data-testid="loading"]').text()
     expect(title).toEqual('Loading...')
-    expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
+    expect(client.getProductsByCategory).toHaveBeenCalledTimes(1)
   })
-  it('Calls getProductBySlug and displays error when error thrown', async () => {
-    client.getProductBySlug.mockImplementation(() => { throw new Error('Something went wrong') } )
+  it('Calls getProductsByCategory and displays error when error thrown', async () => {
+    client.getProductsByCategory.mockImplementation(() => { throw new Error('Something went wrong') } )
     const wrapper = mount(Categories, {
       global: {
         plugins: [router],
@@ -96,6 +99,6 @@ describe('Testing Products Page', () => {
     await flushPromises()
     const title = wrapper.find('[data-testid="error"]').text()
     expect(title).toContain('error')
-    expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
+    expect(client.getProductsByCategory).toHaveBeenCalledTimes(1)
   })
 })
