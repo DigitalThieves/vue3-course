@@ -10,7 +10,6 @@ beforeEach(() => {
   jest.clearAllMocks()
 })
 
-
 describe('Testing Router File', () => {
   it('Should be a Vue Plugin', () => {
     expect(router).toBeTruthy()
