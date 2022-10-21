@@ -7,12 +7,15 @@ import categories from '@/pages/categories.vue'
 const routes = [{
     path: '/',
     component: homepage,
+    name: 'home',
   }, {
     path: '/categories/:slug',
-    component: categories
+    component: categories,
+    name: 'categories',
   }, {
     path: '/products/:slug',
-    component: products
+    component: products,
+    name: 'products',
 }]
 
 const router = createRouter({

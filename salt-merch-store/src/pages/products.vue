@@ -23,7 +23,7 @@
     <div class="row text-left">
       <div class="col-12">
         <p class="text-uppercase fs-12 fw-semibold">
-          SALT MERCH / {{ product.category }} / {{ product.title }}
+          <router-link class="text-decoration-none text-dark" :to="{name: 'home'}"> SALT MERCH </router-link> / <router-link class="text-decoration-none text-dark" :to="{ name: 'categories', params: { slug: product.category } }"> {{ product.category }} </router-link> / {{ product.title }}
         </p>
       </div>
       <div class="col-4">

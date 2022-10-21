@@ -5,10 +5,18 @@
       popular categories.
     </h2>
     <div class="d-flex justify-content-center">
-      <button class="px-5 py-3 bg-white mx-1 text-uppercase"> Hats </button>
-      <button class="px-5 py-3 bg-white mx-1 text-uppercase"> Jackets </button>
-      <button class="px-5 py-3 bg-white mx-1 text-uppercase"> T-shirts </button>
-      <button class="px-5 py-3 bg-white mx-1 text-uppercase"> Bags </button>
+      <RouterLink v-slot="{ navigate }" :to="{ name: 'categories', params: { slug: 'hats' } }">
+        <button @click="navigate" class="px-5 py-3 bg-white mx-1 text-uppercase"> Hats </button>
+      </RouterLink>
+      <RouterLink v-slot="{ navigate }" :to="{ name: 'categories', params: { slug: 'jackets' } }">
+        <button @click="navigate" class="px-5 py-3 bg-white mx-1 text-uppercase"> Jackets </button>
+      </RouterLink>
+      <RouterLink v-slot="{ navigate }" :to="{ name: 'categories', params: { slug: 'tshirts' } }">
+        <button @click="navigate" class="px-5 py-3 bg-white mx-1 text-uppercase"> T-shirts </button>
+      </RouterLink>
+      <RouterLink v-slot="{ navigate }" :to="{ name: 'categories', params: { slug: 'bags' } }">
+        <button @click="navigate" class="px-5 py-3 bg-white mx-1 text-uppercase"> Bags </button>
+      </RouterLink>
     </div>
   </div>
 </template>
