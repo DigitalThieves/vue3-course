@@ -12,11 +12,11 @@
         >
           <img
             src="../assets/images/salt.svg"
-            class="header-logo"
+            class="header-logo mx-auto d-block"
           >
         </router-link>
         <div class="col-4 justify-content-end text-end px-4 align-items-center d-flex">
-          <cart-icon />
+          <!-- <cart-icon will be going here /> -->
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
           :to="{
             name: 'categories',
             params: {
-              category: 'hats'
+              slug: 'hats'
             }
           }"
           custom
@@ -89,13 +89,13 @@
   </header>
 </template>
 <script>
-import CartIcon from '@/components/Cart/CartIcon.vue'
+// import CartIcon from '@/components/Cart/CartIcon.vue'
 
-export default {
-  components: {
-    CartIcon
-  }
-}
+// export default {
+//   components: {
+//     CartIcon
+//   }
+// }
 </script>
 
 <style>
