@@ -4,7 +4,6 @@ import { mount } from '@vue/test-utils'
 import client from '@/api-client'
 import flushPromises from 'flush-promises'
 const router = {
-  
   install: app => {
     app.config.globalProperties.$route = {
       params: {
