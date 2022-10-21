@@ -141,8 +141,13 @@ export default {
     }
   },
   async mounted () {
-    this.product = await productClient.getProductBySlug(this.$route.params.slug)
-    this.isLoading = false
+    try {
+      this.product = await productClient.getProductBySlug(this.$route.params.slug)
+    } catch (e) {
+      this.error = 'There has been an error'
+    } finally {
+      this.isLoading = false
+    }
   },
 }
 </script>

@@ -1,89 +1,71 @@
-import { mount } from '@vue/test-utils'
-import Products from '@/pages/products.vue'
+import Products from '@/pages/products'
 import products from '@/assets/db/products.json'
+import { mount } from '@vue/test-utils'
+import client from '@/api-client'
+import flushPromises from 'flush-promises'
+const router = {
+  
+  install: app => {
+    app.config.globalProperties.$route = {
+      params: {
+        slug: 'salty-black-jacket'
+      }
+    }
+  }
+}
 
-describe('Products.vue', () => {
-  it('Renders the Loading... screen when isLoading is set to true', async () => {
-    const wrapper = mount(Products)
-    await new Promise( (done, err) => 
-      setTimeout(
-        async () => {
-          await wrapper.setData({
-            isLoading: true
-          })
-          const isLoading = wrapper.find('[data-testid="loading"]')
-          try {
-            expect(isLoading.text()).toEqual('Loading...')
-          } catch (e) {
-            err(e)
+jest.mock('@/api-client')
+beforeEach(() => {
+  jest.clearAllMocks()
+})
+
+describe('Testing Products Page', () => {
+  it('Calls getProductBySlug and displays correct title', async () => {
+    const prod = products.find(el => el.slug = 'salty-black-jacket')
+    client.getProductBySlug.mockResolvedValueOnce(prod)
+    const wrapper = mount(Products, {
+      global: {
+        plugins: [router],
+        stubs: {
+          RouterLink: {
+            template: '<a><slot /></a>'
           }
-          done()
-        },
-        501
-      )
-      
-    )
+        }
+      }
+    })
+    await flushPromises()
+    const title = wrapper.find('[data-testid="title"]').text()
+    expect(title).toEqual(prod.title)
+    expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
   })
-  it('Renders the Error screen when isLoading is set to true', async () => {
-    // const sizes = products[3].colors[0].sizes
-    const wrapper = mount(Products)
-    await new Promise( (done, err) => 
-      setTimeout(
-        async () => {
-          await wrapper.setData({
-            error: 'Err Message',
-          })
-          const error = wrapper.find('[data-testid="error"]')
-          try {
-            expect(error.text()).toEqual('Err Message')
-          } catch (e) {
-            err(e)
-          }
-          done()
-        },
-        501
-      )
-      
-    )
+  it('Calls getProductBySlug and displays loading while waiting...', async () => {
+    const prod = products[2]
+    client.getProductBySlug.mockImplementation(() => new Promise (done => setTimeout(() => done(prod), 1500)) )
+    const wrapper = mount(Products, {
+      global: {
+        plugins: [router]
+      }
+    })
+    const title = wrapper.find('[data-testid="loading"]').text()
+    expect(title).toEqual('Loading...')
+    expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
   })
-  it('Renders the title and description when product is set', async () => {
-    const product = products[3]
-    const wrapper = mount(Products)
-    await new Promise( (done, err) => 
-      setTimeout(
-        async () => {
-          await wrapper.setData({
-            product
-          })
-          const title = wrapper.find('[data-testid="title"]')
-          const description = wrapper.find('[data-testid="description"]')
-          try {
-            expect(title.text()).toEqual(product.title)
-            expect(description.html().replaceAll(/\n|\t|( {2})/g, '')).toContain(`<div data-testid="description">${product.description.trim()}</div>`)
-          } catch (e) {
-            err(e)
-          }
-          done()
-        },
-        501
-      )
-    )
+  it('Calls getProductBySlug and displays error when error thrown', async () => {
+    client.getProductBySlug.mockImplementation(() => { throw new Error('Something went wrong') } )
+    const wrapper = mount(Products, {
+      global: {
+        plugins: [router]
+      },
+      stubs: {
+        RouterLink: {
+          template: '<a><slot /></a>'
+        }
+      }
+    })
+    await flushPromises()
+    const title = wrapper.find('[data-testid="error"]').text()
+    expect(title).toContain('error')
+    expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
   })
-  it('Tests that both currentColor computed value work as expected', () => {
-    const product = products[3]
-    const colorIndex = 1
-    const localThis = {
-      product,
-      colorIndex
-    }
-    expect(Products.computed.currentColor.call(localThis)).toBe(product.colors[colorIndex])
-  })
-  it('Tests that currentImage computed value work as expected', () => {
-    const currentColor = products[3].colors[1]
-    const localThis = {
-      imgIndex: 1,
-      currentColor
-    }
-    expect(Products.computed.currentImage.call(localThis)).toEqual(currentColor.images[1])
-  })
+
 })
