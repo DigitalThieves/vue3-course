@@ -6,12 +6,13 @@
     <div class="row">
       <div class="col-12 text-left">
         <p class="text-uppercase fs-12 fw-semibold">
-          <a
+          <router-link
             class="text-decoration-none text-dark"
-            href="/"
+            to="/"
           >
             SALT MERCH
-          </a>
+          </router-link>
+          / Full Collection
         </p>
       </div>
       <div class="col-12 px-5">

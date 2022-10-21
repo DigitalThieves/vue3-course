@@ -22,34 +22,23 @@ describe('Testing Router File for Collection', () => {
 })
 
 describe('Testing Products Page', () => {
-  it('Calls getAllProducts and displays correct title and description', async () => {
+  it('Calls getAllProducts and displays correct amount of products', async () => {
     client.getAllProducts.mockResolvedValueOnce(products)
-    const wrapper = mount(Categories, {
+    const wrapper = mount(Collection, {
       global: {
         plugins: [router],
       }
     })
     await flushPromises()
-    const title = wrapper.find('[data-testid="title"]').text()
-    expect(title).toEqual(cat.title)
-    const description = wrapper.find('[data-testid="description"]').text()
-    expect(description).toContain(cat.description)
-    expect(client.getAllProducts).toHaveBeenCalledTimes(1)
+    const title = wrapper.findAll('.row > .col-3.text-decoration-none')
+    expect(title).toHaveLength(products.length)
   })
 
   it('Tests that router link is being used properly in breadcrumbs', async () => {
     client.getAllProducts.mockResolvedValueOnce(products)
-    const wrapper = mount(Categories, {
+    const wrapper = mount(Collection, {
       global: {
-        plugins: [{
-          install: app => {
-            app.config.globalProperties.$route = {
-              params: {
-                slug: category.category
-              }
-            }
-          }
-        }],
+        plugins: [router],
         stubs: {
           RouterLink: {
             template: '<a data-test-id="stubbed-link"><slot /></a>'
@@ -61,34 +50,5 @@ describe('Testing Products Page', () => {
     const title = wrapper.findAll('[data-test-id="stubbed-link"]')
     expect(title.length).toBeGreaterThan(0)
     expect(title[0].text()).toBe('SALT MERCH')
-  })
-
-  it('Calls getAllProducts and displays loading while waiting...', async () => {
-    client.getAllProducts.mockImplementation(() => new Promise (done => setTimeout(() => done(products), 1500)) )
-    const wrapper = mount(Categories, {
-      global: {
-        plugins: [router],
-        stubs: {
-          RouterLink: {
-            template: '<a data-test-id="stubbed-link"><slot /></a>'
-          }
-        }
-      }
-    })
-    const title = wrapper.find('[data-testid="loading"]').text()
-    expect(title).toEqual('Loading...')
-    expect(client.getAllProducts).toHaveBeenCalledTimes(1)
-  })
-  it('Calls getAllProducts and displays error when error thrown', async () => {
-    client.getAllProducts.mockImplementation(() => { throw new Error('Something went wrong') } )
-    const wrapper = mount(Categories, {
-      global: {
-        plugins: [router],
-      },
-    })
-    await flushPromises()
-    const title = wrapper.find('[data-testid="error"]').text()
-    expect(title).toContain('error')
-    expect(client.getAllProducts).toHaveBeenCalledTimes(1)
   })
 })
