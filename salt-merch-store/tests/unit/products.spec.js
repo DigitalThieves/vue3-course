@@ -19,6 +19,7 @@ describe('Testing Router File', () => {
     ).toBeTruthy()
   })
 })
+
 describe('Testing Products Page', () => {
   it('Calls getProductBySlug and displays correct title and description', async () => {
     const prod = products.find(el => el.slug = 'salty-black-jacket')

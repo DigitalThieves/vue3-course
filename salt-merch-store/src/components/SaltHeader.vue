@@ -25,7 +25,6 @@
       <nav class="row justify-content-center">
         <router-link
           v-slot="{ isActive, navigate }"
-          class=""
           :to="{
             name: 'categories',
             params: {
@@ -44,7 +43,6 @@
         </router-link>
         <router-link
           v-slot="{ isActive, navigate }"
-          class=""
           to="/categories/jackets"
           custom
         >
@@ -58,7 +56,6 @@
         </router-link>
         <router-link
           v-slot="{ isActive, navigate }"
-          class=""
           to="/categories/tshirts"
           custom
         >
@@ -72,7 +69,6 @@
         </router-link>
         <router-link
           v-slot="{ isActive, navigate }"
-          class=""
           to="/categories/bags"
           custom
         >

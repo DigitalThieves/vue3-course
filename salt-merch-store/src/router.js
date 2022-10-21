@@ -42,7 +42,7 @@ const routes = [{
       default: aboutSalt,
       header: AltHeader
     },
-    name: 'products',
+    name: 'about',
 }]
 
 const router = createRouter({
