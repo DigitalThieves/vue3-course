@@ -7,6 +7,11 @@ describe('CategoriesNav.vue', () => {
     const wrapper = mount(CategoriesNav , {
       attrs: {
         'data-test-attributes': gibberish
+      },
+      stubs: {
+        RouterLink: {
+          template: '<a><slot /></a>'
+        }
       }
     })
     const rootWAttr = wrapper.find('[data-testid="root-w-attr"]')

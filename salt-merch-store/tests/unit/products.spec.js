@@ -5,7 +5,6 @@ import client from '@/api-client'
 import flushPromises from 'flush-promises'
 const router = {
   install: app => {
-    console.log('installing fake router')
     app.config.globalProperties.$route = {
       params: {
         slug: 'salty-black-jacket'
@@ -19,19 +18,41 @@ beforeEach(() => {
   jest.clearAllMocks()
 })
 
-describe('', () => {
-  it.only('Calls getProductBySlug and displays correct title', async () => {
+describe('Testing Products Page', () => {
+  it('Calls getProductBySlug and displays correct title', async () => {
     const prod = products.find(el => el.slug = 'salty-black-jacket')
     client.getProductBySlug.mockResolvedValueOnce(prod)
     const wrapper = mount(Products, {
       global: {
-        plugins: [router]
+        plugins: [router],
+        stubs: {
+          RouterLink: {
+            template: '<a><slot /></a>'
+          }
+        }
       }
     })
     await flushPromises()
     const title = wrapper.find('[data-testid="title"]').text()
     expect(title).toEqual(prod.title)
     expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
+  })
+  it('Calls getProductBySlug and displays correct title', async () => {
+    const prod = products.find(el => el.slug = 'salty-black-jacket')
+    client.getProductBySlug.mockResolvedValueOnce(prod)
+    const wrapper = mount(Products, {
+      global: {
+        plugins: [router],
+        stubs: {
+          RouterLink: {
+            template: '<arod><slot /></arod>'
+          }
+        }
+      }
+    })
+    await flushPromises()
+    const title = wrapper.find('arod')
+    expect(title).toExist
   })
   it('Calls getProductBySlug and displays loading while waiting...', async () => {
     const prod = products[2]
@@ -50,6 +71,11 @@ describe('', () => {
     const wrapper = mount(Products, {
       global: {
         plugins: [router]
+      },
+      stubs: {
+        RouterLink: {
+          template: '<a><slot /></a>'
+        }
       }
     })
     await flushPromises()
