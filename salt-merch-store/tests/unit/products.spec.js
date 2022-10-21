@@ -45,21 +45,26 @@ describe('Testing Products Page', () => {
         plugins: [router],
         stubs: {
           RouterLink: {
-            template: '<arod><slot /></arod>'
+            template: '<a data-test-id="stubbed-link"><slot /></a>'
           }
         }
       }
     })
     await flushPromises()
-    const title = wrapper.find('arod')
-    expect(title).toExist
+    const title = wrapper.find('[data-test-id="stubbed-link"]')
+    expect(title).toBeDefined()
   })
   it('Calls getProductBySlug and displays loading while waiting...', async () => {
     const prod = products[2]
     client.getProductBySlug.mockImplementation(() => new Promise (done => setTimeout(() => done(prod), 1500)) )
     const wrapper = mount(Products, {
       global: {
-        plugins: [router]
+        plugins: [router],
+        stubs: {
+          RouterLink: {
+            template: '<a data-test-id="stubbed-link"><slot /></a>'
+          }
+        }
       }
     })
     const title = wrapper.find('[data-testid="loading"]').text()
@@ -70,13 +75,13 @@ describe('Testing Products Page', () => {
     client.getProductBySlug.mockImplementation(() => { throw new Error('Something went wrong') } )
     const wrapper = mount(Products, {
       global: {
-        plugins: [router]
-      },
-      stubs: {
-        RouterLink: {
-          template: '<a><slot /></a>'
+        plugins: [router],
+        stubs: {
+          RouterLink: {
+            template: '<a><slot /></a>'
+          }
         }
-      }
+      },
     })
     await flushPromises()
     const title = wrapper.find('[data-testid="error"]').text()

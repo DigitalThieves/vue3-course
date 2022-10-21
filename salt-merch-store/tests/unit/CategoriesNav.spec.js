@@ -8,9 +8,11 @@ describe('CategoriesNav.vue', () => {
       attrs: {
         'data-test-attributes': gibberish
       },
-      stubs: {
-        RouterLink: {
-          template: '<a><slot /></a>'
+      global: {
+        stubs: {
+          RouterLink: {
+            template: '<a><slot /></a>'
+          }
         }
       }
     })
