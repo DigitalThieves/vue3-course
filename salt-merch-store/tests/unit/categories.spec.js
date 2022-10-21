@@ -1,4 +1,4 @@
-import Products from '@/pages/products'
+import Categories from '@/pages/categories'
 import products from '@/assets/db/products.json'
 import { mount } from '@vue/test-utils'
 import client from '@/api-client'
@@ -23,9 +23,12 @@ describe('Testing Router File', () => {
 
 describe('Testing Products Page', () => {
   it('Calls getProductBySlug and displays correct title and description', async () => {
-    const prod = products.find(el => el.slug = 'salty-black-jacket')
-    client.getProductBySlug.mockResolvedValueOnce(prod)
-    const wrapper = mount(Products, {
+
+    const cat_prod = products.filter(el => el.category === category_slug )
+    const category = categories.filter(el => el.category === category_slug )[0] 
+    const cat = { ...category, products: cat_prod }
+    client.getProductsByCategory.mockResolvedValueOnce(cat)
+    const wrapper = mount(Categories, {
       global: {
         plugins: [router],
       }
@@ -35,13 +38,13 @@ describe('Testing Products Page', () => {
     expect(title).toEqual(prod.title)
     const description = wrapper.find('[data-testid="description"]').html()
     expect(description.replace(/\s/g, '')).toContain(prod.description.replace(/\s/g, ''))
-    expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
+    expect(client.getProductsByCategory).toHaveBeenCalledTimes(1)
   })
 
   it('Tests that router link is being used properly in breadcrumbs', async () => {
     const prod = products.find(el => el.slug = 'salty-black-jacket')
     client.getProductBySlug.mockResolvedValueOnce(prod)
-    const wrapper = mount(Products, {
+    const wrapper = mount(Categories, {
       global: {
         plugins: [{
           install: app => {
@@ -69,7 +72,7 @@ describe('Testing Products Page', () => {
   it('Calls getProductBySlug and displays loading while waiting...', async () => {
     const prod = products[2]
     client.getProductBySlug.mockImplementation(() => new Promise (done => setTimeout(() => done(prod), 1500)) )
-    const wrapper = mount(Products, {
+    const wrapper = mount(Categories, {
       global: {
         plugins: [router],
         stubs: {
@@ -85,7 +88,7 @@ describe('Testing Products Page', () => {
   })
   it('Calls getProductBySlug and displays error when error thrown', async () => {
     client.getProductBySlug.mockImplementation(() => { throw new Error('Something went wrong') } )
-    const wrapper = mount(Products, {
+    const wrapper = mount(Categories, {
       global: {
         plugins: [router],
       },
