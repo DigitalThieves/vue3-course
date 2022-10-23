@@ -21,7 +21,7 @@ describe('Testing Router File for Collection', () => {
   })
 })
 
-describe('Testing Products Page', () => {
+describe('Testing Collections Page', () => {
   it('Calls getAllProducts and displays correct amount of products', async () => {
     client.getAllProducts.mockResolvedValueOnce(products)
     const wrapper = mount(Collection, {

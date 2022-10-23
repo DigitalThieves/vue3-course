@@ -22,7 +22,7 @@ describe('Testing Router File', () => {
   })
 })
 
-describe('Testing Products Page', () => {
+describe('Testing Collections Page', () => {
   it('Calls getProductsByCategory and displays correct title and description', async () => {
     const cat_prod = products.filter(el => el.category === 'bags' )
     const category = categories.filter(el => el.category === 'bags' )[0] 
