@@ -62,7 +62,25 @@ export default {
   },
   computed: {
     cartItems () {
-      const cart = this.$store.state.cart
+      // todo: code below is stub/mock implementation
+      const cart = [{
+        slug: 'fake-slug',
+        category: 'fake-category',
+        colors: [{
+          color_name: 'Fake Color',
+          colorhex: '#000',
+          sizes: [{
+            size: 'fake-size',
+            stock: 3
+          }],
+          images: [
+            'images/salt-store-items/hat/01.jpg',
+            'images/salt-store-items/hat/02.jpg'
+          ]
+        }],
+        quantity: 1,
+        title: 'Fake Baseball Hat',
+      }]
       return cart.length ? cart : false
     },
     titleSize () {
@@ -109,10 +127,12 @@ export default {
   },
   methods: {
     removeQuantity (item) {
-      this.$store.dispatch('removeItem', item)
+      // todo
+      return item
     },
     addQuantity (item) {
-      this.$store.dispatch('addItem', item)
+      // todo
+      return item
     }
   },
 }

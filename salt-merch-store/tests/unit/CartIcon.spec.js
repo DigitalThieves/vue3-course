@@ -3,10 +3,6 @@ import { mount } from '@vue/test-utils'
 import store from '@/store/index'
 import router from '@/router'
 
-beforeEach(() => {
-  jest.clearAllMocks()
-})
-
 const test_item_one = {
   slug: 'test-item',
   category: 'bags',
@@ -66,30 +62,8 @@ describe('Testing Cart Icon', () => {
     await store.dispatch('addItem', test_item_one)
     let classes = cartIconContainer.classes()
     expect(classes).toContain('expanded')
+    
   })
-  // it('Checks if CartIcon has more than zero height after adding a product in cart and then shrinks back', async () => {
-  //   const wrapper = mount(CartIcon, {
-  //     global: {
-  //       plugins: [store, router],
-  //       stubs: {
-  //         CartList: {
-  //           template: '<div class="w-full text-left">bunch of stuff</div>'
-  //         }
-  //       }
-  //     }
-  //   })
-  //   const cartIconContainers = wrapper.findAll('[data-testid="expanded-class"]')
-  //   expect(cartIconContainers.length).toEqual(1)
-  //   const cartIconContainer = cartIconContainers[0]
-  //   await store.dispatch('addItem', test_item_one)
-  //   let classes = cartIconContainer.classes()
-  //   expect(classes).toContain('expanded')
-  //   await (new Promise(done => setTimeout(() => {
-  //       classes = cartIconContainer.classes()
-  //       done(expect(classes).not.toContain('expanded'))
-  //     }, 4002)
-  //   ))
-  // })
 })
 
 

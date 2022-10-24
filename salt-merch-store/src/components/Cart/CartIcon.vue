@@ -17,10 +17,10 @@
       </svg>
     </router-link>
     <div
-      v-if="$store.state.cart.length"
+      v-if="true"
       class="position-absolute cart-icon-number d-flex align-items-center justify-content-center text-center"
     >
-      {{ amount_of_products }}
+      1
     </div>
     <div class="position-absolute cart-icon-list bg-white">
       <br>
@@ -41,22 +41,6 @@ export default {
       val: '',
       expanded: false,
       expandTimeout: null
-    }
-  },
-  computed: {
-    amount_of_products () {
-      const cart = this.$store.state.cart
-      let amount = 0;
-      for (let i = 0; i < cart.length; i++ )
-        amount += cart[i].quantity
-      return amount
-    }
-  },
-  watch: {
-    amount_of_products () {
-      this.expanded = true
-      clearTimeout(this.expandTimeout)
-      this.expandTimeout = setTimeout(() => this.expanded = false , 4000)
     }
   },
 }

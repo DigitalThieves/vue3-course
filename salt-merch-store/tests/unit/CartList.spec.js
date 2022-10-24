@@ -3,10 +3,15 @@ import { mount } from '@vue/test-utils'
 import store from '@/store'
 import router from '@/router'
 
-beforeEach(() => {
-  jest.clearAllMocks()
+describe('Testing Router File', () => {
+  it('Should be a Vue Plugin with cart route', () => {
+    expect(router).toBeTruthy()
+    expect(router.currentRoute).toBeTruthy()
+    expect(
+      router.options.routes.find(el => el.path.startsWith('/cart'))
+    ).toBeTruthy()
+  })
 })
-
 
 store.dispatch('addItem', {
     slug: 'baggie-salt-shopping-bag',
