@@ -1,6 +1,6 @@
 import CartList from '@/components/Cart/CartList'
 import { mount } from '@vue/test-utils'
-import store from '@/store/index'
+import store from '@/store'
 import router from '@/router'
 
 beforeEach(() => {
