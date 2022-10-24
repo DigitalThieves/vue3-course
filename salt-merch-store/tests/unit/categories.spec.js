@@ -34,10 +34,12 @@ describe('Testing Collections Page', () => {
       }
     })
     await flushPromises()
-    const title = wrapper.find('[data-testid="title"]').text()
-    expect(title).toEqual(cat.title)
-    const description = wrapper.find('[data-testid="description"]').text()
-    expect(description).toContain(cat.description)
+    const title = wrapper.find('[data-testid="title"]')
+    expect(title.exists()).toBe(true)
+    expect(title.text()).toEqual(cat.title)
+    const description = wrapper.find('[data-testid="description"]')
+    expect(description.exists()).toBe(true)
+    expect(description.text()).toContain(cat.description)
     expect(client.getProductsByCategory).toHaveBeenCalledTimes(1)
   })
 
@@ -85,8 +87,9 @@ describe('Testing Collections Page', () => {
         }
       }
     })
-    const title = wrapper.find('[data-testid="loading"]').text()
-    expect(title).toEqual('Loading...')
+    const title = wrapper.find('[data-testid="loading"]')
+    expect(title.exists()).toBe(true)
+    expect(title.text()).toEqual('Loading...')
     expect(client.getProductsByCategory).toHaveBeenCalledTimes(1)
   })
   it('Calls getProductsByCategory and displays error when error thrown', async () => {
@@ -97,8 +100,9 @@ describe('Testing Collections Page', () => {
       },
     })
     await flushPromises()
-    const title = wrapper.find('[data-testid="error"]').text()
-    expect(title).toContain('error')
+    const title = wrapper.find('[data-testid="error"]')
+    expect(title.exists()).toBe(true)
+    expect(title.text()).toContain('error')
     expect(client.getProductsByCategory).toHaveBeenCalledTimes(1)
   })
 })
