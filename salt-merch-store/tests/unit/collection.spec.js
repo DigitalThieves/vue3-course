@@ -1,11 +1,11 @@
 import Collection from '@/pages/collection'
 import products from '@/assets/db/products.json'
 import { mount } from '@vue/test-utils'
-import client from '@/api-client'
+import client from '@/services/api-client'
 import flushPromises from 'flush-promises'
 import router from '@/router'
 
-jest.mock('@/api-client')
+jest.mock('@/services/api-client')
 beforeEach(() => {
   jest.clearAllMocks()
 })

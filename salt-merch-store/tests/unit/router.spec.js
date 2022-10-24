@@ -1,6 +1,6 @@
 import router from '@/router'
 
-jest.mock('@/api-client')
+jest.mock('@/services/api-client')
 beforeEach(() => {
   jest.clearAllMocks()
 })

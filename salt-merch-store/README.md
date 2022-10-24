@@ -20,7 +20,7 @@ Your first job will be to install Vue Router and add it to the project and add h
 1. Add a new route in your routes-object inside `router.js` with base-path '/products/' but extend it with a parameter after the last forward-slash. the parameter can be named slug but it doesn't matter.
 2. Import the `products.vue` component and add it to the path in previous step
 3. In `products.vue` delete the object from the reactive `product` property in the `data ()` function and instead set it to `null`
-3. In `products.vue` you can import productClient using `import productClient from '@/api-client'`
+3. In `products.vue` you can import productClient using `import productClient from '@/services/api-client'`
 4. In mounted-hook (in products.vue) you should use the product slug from the route-parameter and use productClient.getProductBySlug() function to get the product data (the function returns a promise that resolves to product data after .5s) for the slug and set it to the reactive `product` property that is used in the template.
 5. [Visit /products/one-size-baseball](http://localhost:8080/products/one-size-baseball) to test it and make sure it works
 6. Wrap the breadcrumb elements in RouterLink and make the first one link to home ('/'), the second one link to the category ('/categories/<category-slug>') and the last one can be pure text, no link needed (you're already on the page!)

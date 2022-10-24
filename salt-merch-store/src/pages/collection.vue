@@ -35,7 +35,7 @@
 
 <script>
 import CollectionView from '@/components/CollectionView.vue'
-// import productClient from '@/api-client'
+// import productClient from '@/services/api-client'
 
 export default {
   name: 'App',
