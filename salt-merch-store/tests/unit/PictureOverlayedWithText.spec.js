@@ -18,6 +18,7 @@ describe('PictureOverlayedWithText.vue', () => {
       },
     })
     const defContainer = wrapper.find('[data-testid="default-slot-container"]')
+    expect(defContainer.exists()).toBe(true)
     const defaultSlotStub = defContainer.find('#default-slot-stub')
     const namedSlotStub = wrapper.find('#overlay-slot-stub')
     expect(defaultSlotStub.exists()).toBe(true)
