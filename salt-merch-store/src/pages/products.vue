@@ -100,7 +100,7 @@
 
 <script>
 import ProductSelectables from '@/components/ProductSelectables.vue'
-import productClient from '@/api-client'
+import productClient from '@/services/api-client'
 
 export default {
   name: 'App',

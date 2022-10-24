@@ -1,5 +1,5 @@
-import products from './assets/db/products.json'
-import categories from './assets/db/categories.json'
+import products from '@/assets/db/products.json'
+import categories from '@/assets/db/categories.json'
 
 export default {
   getProductBySlug: slug =>
