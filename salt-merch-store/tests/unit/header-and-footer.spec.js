@@ -20,10 +20,10 @@ describe('Testing Router File for Collection', () => {
       router.options.routes.find(el => el.path.startsWith('/')).components.header
     ).toBeTruthy()
     expect(
-      router.options.routes.find(el => el.path.startsWith('/about')).components.header
+      router.options.routes.find(el => el.path.startsWith('/about'))
     ).toBeTruthy()
     expect(
-      router.options.routes.find(el => el.path.startsWith('/about')).components.header
+      router.options.routes.find(el => el.path.startsWith('/about')).components
     ).toBeTruthy()
     expect(
       router.options.routes.find(el => el.path.startsWith('/about')).components.header
