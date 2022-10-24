@@ -74,7 +74,7 @@ describe('Testing Cart List', () => {
     expect(liHTML).toContain('<span> Qty: 1</span>')
   })
 
-  it('checks if cartList has one item with quantity 2', async () => {
+  it('checks if cartList adds a quantity when plus-button is clicked', async () => {
     const wrapper = mount(CartList, {
       global: {
         plugins: [store, router]
@@ -89,7 +89,10 @@ describe('Testing Cart List', () => {
     expect(liHTML).toContain('Baggie Salt Shopping Bag / Baggie Black / <span class=\"text-capitalize\">one-size</span')
     expect(liHTML).toContain('<span> Qty: 2</span>')
   })
-
+  test('that store has one item with quantity 2', async () => {
+    expect(store.state.cart.length).toEqual(1)
+    expect(store.state.cart[0].quantity).toEqual(2)
+  })
   test('that cart list grows when adding a different item to list', async () => {
     const wrapper = mount(CartList, {
       global: {
@@ -99,6 +102,8 @@ describe('Testing Cart List', () => {
     await store.dispatch('addItem', test_item_one)
     const listItems = wrapper.findAll('li')
     expect(listItems.length).toEqual(2)
+    expect(store.state.cart.length).toEqual(2)
+    expect(listItems.length).toEqual(store.state.cart.length)
     const listItem = listItems[1]
     const buttons = listItem.findAll('[data-testid="addBtn"]')
     await buttons[0].trigger('click')
