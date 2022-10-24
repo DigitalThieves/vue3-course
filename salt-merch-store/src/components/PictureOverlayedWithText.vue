@@ -9,6 +9,7 @@
     <div
       class="position-absolute w-100 h-100 justify-content-center align-items-center d-flex"
       style="top: 0%"
+      data-testid="default-slot-container"
     >
       <slot />
     </div>

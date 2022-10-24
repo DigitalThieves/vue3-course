@@ -1,8 +1,13 @@
 <template>
-  <p class="mt-5">Categories.</p>
+  <p
+    data-testid="root-wo-attr"
+    class="mt-5"
+  >
+    Categories.
+  </p>
   <div
     v-bind="$attrs"
-    data-testid="attrs"
+    data-testid="root-w-attr"
   >
     <h2 class="mb-5">
       popular categories.

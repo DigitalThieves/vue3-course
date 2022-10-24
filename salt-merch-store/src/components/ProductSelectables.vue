@@ -5,7 +5,7 @@
       :key="size.size"
       data-testid="selectable"
       class="selectable-product-sizes border text-center px-3 py-2"
-      :style="sizeStyle(size, i)"
+      :class="sizeClass(size, i)"
       @click="size.stock ? $emit('update:activeIndex', i) : null"
     >
       {{ size.size }}
@@ -61,6 +61,11 @@ export default {
       return i === this.activeIndex ? 'background-color: black; color: white' : (
         size.stock ? '' : 'background-color: lightgrey; cursor: default !important;'
       )
+    },
+    sizeClass (size, i) {
+      return i === this.activeIndex ? 'bg-dark text-white' : (
+        size.stock ? '' : 'bg-secondary text-white cursor-default'
+      )
     }
   }
 }
@@ -91,5 +96,8 @@ export default {
 .selectable-product-colors {
   height: 50px;
   width: 37px;
+}
+.cursor-default {
+  cursor: default;
 }
 </style>

@@ -21,24 +21,32 @@
         </p>
       </div>
       <div class="col-12 px-5">
-        <h2>
+        <h2 data-testid="title">
           {{ category.title }}
         </h2>
-        <p> {{ category.description }} </p>
+        <p data-testid="description"> {{ category.description }} </p>
       </div>
     </div>
     <collection-view :collection="category.products" />
   </div>
   <div
-    v-else
+    v-else-if="isLoading"
     class="container"
   >
-    <h1>
+    <h1 data-testid="loading">
       Loading...
     </h1>
     <p>
       Category: {{ $route.params.category }}
     </p>
+  </div>
+  <div
+    v-else
+    class="container"
+  >
+    <h1 data-testid="error">
+      error...
+    </h1>
   </div>
 </template>
 
@@ -53,16 +61,29 @@ export default {
   },
   async beforeRouteUpdate(to, _, next) {
     this.category = null
-    this.category = await client.getProductsByCategory(to.params.category)
+    try {
+      this.category = await client.getProductsByCategory(to.params.category)
+    } catch (e) {
+      this.error = true
+    } finally {
+      this.isLoading = false
+    }
     next()
   },
   data () {
     return {
-      category: null
+      category: null,
+      isLoading: true,
     }
   },
   async mounted () {
-    this.category = await client.getProductsByCategory(this.$route.params.category)
+      try {
+        this.category = await client.getProductsByCategory(this.$route.params.category)
+      } catch (e) {
+        this.error = true
+      } finally {
+        this.isLoading = false
+      }
   },
 }
 </script>
