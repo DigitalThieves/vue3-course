@@ -78,13 +78,19 @@ Once you run this branch as-is you will see that both "LOADING" and "ERROR MESSA
 3. Once you've gotten this to work, experiment with changing the data properties (`isLoading` and `error`) accordingly and make sure you're conditions work as expected, after experimenting you should put isLoading to `false` and error to `null` and only focus on the product page.
 
 
-## Task 2. Breadcrumb & Title
+## Task 2a. Breadcrumb & Title
 
 The next step is to fix the breadcrumb (look for element with class `breadcrumb`), replace the CATEGORY and TITLE with the real data using `{{ data_property }}` syntax and also do the same with the product title on display in various locations.
 
-1. Change SALT-MERCH / CATEGORY / TITLE to real values
-2. Change the PRODUCT TITLE in the big letters on top of the product to real values
-3. Change the PRODUCT TITLE in the button "Add PRODUCT TITLE To Cart" to real values
+1. Change `CATEGORY` and `TITLE` in the `SALT-MERCH / CATEGORY / TITLE` breadcrumb to real values (`SALT-MERCH` can continue being hardcoded)
+2. Change the `PRODUCT TITLE` in the big letters on top of the product to real values
+3. Change the `PRODUCT TITLE` in the button "Add PRODUCT TITLE To Cart" to real values
+
+## Task 2b. Description as HTML
+
+1. Find the hardcoded product description and change it to instead use the description from the data. Beware! The data has HTML as raw values. Using `{{ data.description }}` will not yield the desired outcome.
+
+3. Change the `PRODUCT TITLE` in the button "Add PRODUCT TITLE To Cart" to real values
 
 ## Task 3. List rendering
 
