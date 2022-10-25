@@ -16,7 +16,7 @@ Today, the focus will mostly continued be on the product page. We will create co
 Right now, the active colorIndex is 0, which is hardcoded and never changes. Let's fix this.
 
 1. The squares of available colors are hardcoded. Change this by iterating over the available colors using the `v-for` directive.
-2. For each color-square add a click-listener that assigns the inded of the clicked color to the colorIndex variable.
+2. For each color-square add a click-listener that assigns the index of the clicked color to the colorIndex variable.
 
 `console.log` the colorIndex or else display it on the page (using something like `<p> {{ colorIndex }} </p>` somewhere in the template) to make sure it actually shifts. Once this is confirmed, remove the log / exposure.
 
