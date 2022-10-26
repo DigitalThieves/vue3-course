@@ -85,6 +85,7 @@ The next step is to fix the breadcrumb (look for element with class `breadcrumb`
 1. Change `CATEGORY` and `TITLE` in the `SALT-MERCH / CATEGORY / TITLE` breadcrumb to real values (`SALT-MERCH` can continue being hardcoded)
 2. Change the `PRODUCT TITLE` in the big letters on top of the product to real values
 3. Change the `PRODUCT TITLE` in the button "Add PRODUCT TITLE To Cart" to real values
+4. Change the `COLOR NAME` and `AVAILABLE STOCK` under the Product Title to real values
 
 ## Task 2b. Description as HTML
 
@@ -103,7 +104,7 @@ Next is the need to render lists. You have a list of colors, for each color you 
 *\* chosen color can be hardcoded to be index 0 of available colors, which in this lab is just one: black*
 
 ## Task 4. Active image & Stock
-Assume for now that the current color is the first (and in todays project only)  color, assume that the size chosen is L and assume that the chosen image is the first image. Tomorrow we will add event listeners to change these and re-render our content accordingly. For now make the above mentioned assumption and do the following:
+Assume for now that the current color is the first (and in todays project only) color, assume that the size chosen is L and assume that the chosen image is the first image. Tomorrow we will add event listeners to change these and re-render our content accordingly. For now make the above mentioned assumption and do the following:
 1. Change the element with class "selected-product-img" and make it get its src-value from the product data with the above mentioned assumptions.
 
 ## Task 5. RAW HTML Rendering
