@@ -45,3 +45,9 @@ This is a simple component that given attributes puts it one of it's root but no
 1. Use selectors like '.classname > div' if that suits you, or else feel free to add test attributes like `data-testid="elementId"` to the components you want to test to easier find what you're looking for.
 2. There is a find() and a findAll() method for doing query selections, use them according to your needs
 3. There are a couple of tests provided to you that are failing because they're not fully implemented, but if you study them you will see that they are half-finished. By finishing them first, you should be able to figure out how to write the rest of the tests
+
+## Bonus Tasks:
+
+1. Testing is one of those theres-no-end-of-the-possibilities type of a thing. As such, the tests above barely covers all possibilities. Think up more ways to test what you've built so far.
+
+2. Go to salt-merch.wickitly.com and see what the end result is going to be. In TDD we write tests FIRST. Try to write tests for functionality that will be built tomorrow
