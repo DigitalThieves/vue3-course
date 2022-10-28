@@ -1,4 +1,4 @@
-# SALT MERCH STORE DAY 3
+# SALT MERCH STORE DAY 4
 
 ## Focus of the day
 
