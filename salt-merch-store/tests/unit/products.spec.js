@@ -4,12 +4,33 @@ import { mount } from '@vue/test-utils'
 import client from '@/services/api-client'
 import flushPromises from 'flush-promises'
 import router from '@/router'
+// Completely fake store, does not represent how real store should operate, only tests that dispatch was called
+const store = (() => {
+  const state = {
+    cart: []
+  }
+  const dispatch = (str, product) => {
+    if (str === 'addItem')
+      state.cart.push(product)
+  }
+  return {
+    install: app => {
+      app.config.globalProperties.$store = {
+        state,
+        dispatch
+      }
+    },
+    state,
+    dispatch
+  }
+})()
 
 jest.mock('@/services/api-client')
 beforeEach(() => {
   jest.clearAllMocks()
 })
 
+describe('Testing Router File', () => {})
 describe('Testing Router File', () => {
   it('Calls getProductBySlug and displays correct title', async () => {
     const prod = products[2]
@@ -132,5 +153,26 @@ describe('Testing Products Page', () => {
     const title = wrapper.find('[data-testid="error"]').text()
     expect(title).toContain('error')
     expect(client.getProductBySlug).toHaveBeenCalledTimes(1)
+  })
+  it('Pushes buy button', async () => {
+    client.getProductBySlug.mockImplementation(() => new Promise (
+      done => done(products[3])
+    ))
+    const wrapper = mount(Products, {
+      global: {
+        plugins: [router, store],
+      },
+    })
+    await flushPromises()
+    await wrapper.setData({
+      sizeIndex: 0
+    })
+    expect(store.state.cart.length).toEqual(0)
+    const buyBtn = wrapper.find('[data-testid="buybtn"]')
+    await buyBtn.trigger('click')
+    expect(store.state.cart.length).toEqual(1)
+    await buyBtn.trigger('click')
+    expect(store.state.cart.length).toEqual(2)
+    expect(store.state.cart[0].slug).toEqual(products[3].slug)
   })
 })

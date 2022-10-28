@@ -95,6 +95,7 @@
         <button
           class="px-5 py-3"
           :disabled="sizeIndex == null"
+          data-testid="buybtn"
           @click="addItem"
         >
           Add {{ product.title }} To Cart
