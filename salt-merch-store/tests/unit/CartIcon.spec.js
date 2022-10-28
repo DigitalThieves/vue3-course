@@ -45,7 +45,6 @@ describe('Testing Cart Icon', () => {
     expect(cartIconContainers.length).toEqual(1)
     const cartIconContainer = cartIconContainers[0]
     const classes = cartIconContainer.classes()
-    console.log('1. classes is', classes)
     expect(classes).not.toContain('expanded')
   })
 
@@ -66,7 +65,6 @@ describe('Testing Cart Icon', () => {
     await store.dispatch('addItem', test_item_one)
     await nextTick()
     const classes = cartIconContainer.classes()
-    console.log('2. classes is', classes)
     expect(classes).toContain('expanded')
   })
 
@@ -91,7 +89,6 @@ describe('Testing Cart Icon', () => {
     expect(cartIconContainers.length).toEqual(1)
     const cartIconContainer = cartIconContainers[0]
     const classes = cartIconContainer.classes()
-    console.log('3. classes is', classes)
     expect(classes).not.toContain('expanded')
     // done()
       // }, 5010)
