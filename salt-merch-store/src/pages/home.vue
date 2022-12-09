@@ -1,14 +1,14 @@
 <template>
-  <HomePage msg="Welcome to Your Vue.js App" />
+  <Collection msg="Welcome to Your Vue.js App" />
 </template>
 
 <script>
-import HomePage from '../components/HomePage.vue'
+import Collection from './collection.vue'
 
 export default {
   name: 'App',
   components: {
-    HomePage
+    Collection
   }
 }
 </script>
