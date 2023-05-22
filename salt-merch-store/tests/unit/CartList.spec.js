@@ -70,7 +70,7 @@ describe('Testing Cart List', () => {
     expect(listItems.length).toEqual(1)
     const listItem = listItems[0]
     let liHTML = listItem.html()
-    expect(liHTML).toContain('Baggie Salt Shopping Bag / Baggie Black / <span class=\"text-capitalize\">one-size</span')
+    expect(liHTML).toContain('Baggie Salt Shopping Bag / Baggie Black / <span class="text-capitalize">one-size</span')
     expect(liHTML).toContain('<span> Qty: 1</span>')
   })
 
@@ -86,7 +86,7 @@ describe('Testing Cart List', () => {
     const buttons = listItem.findAll('[data-testid="addBtn"]')
     await buttons[0].trigger('click')
     const liHTML = listItem.html()
-    expect(liHTML).toContain('Baggie Salt Shopping Bag / Baggie Black / <span class=\"text-capitalize\">one-size</span')
+    expect(liHTML).toContain('Baggie Salt Shopping Bag / Baggie Black / <span class="text-capitalize">one-size</span')
     expect(liHTML).toContain('<span> Qty: 2</span>')
   })
   test('that store has one item with quantity 2', async () => {
