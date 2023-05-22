@@ -100,7 +100,10 @@
           Add {{ product.title }} To Cart
         </button>
         <hr class="my-3">
-        <div data-testid="description" v-html="product.description" />
+        <div
+          data-testid="description"
+          v-html="product.description"
+        />
       </div>
     </div>
   </div>
