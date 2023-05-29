@@ -22,7 +22,7 @@
       </div>
       <div class="col-12 px-5">
         <h2 data-testid="title">
-          {{ category.title }}
+          {{ category.category }}
         </h2>
         <p data-testid="description"> {{ category.description }} </p>
       </div>
@@ -61,7 +61,9 @@ export default {
   },
   async beforeRouteUpdate(to, _, next) {
     this.category = null
+    this.error = false
     try {
+      this.isLoading = true
       this.category = await client.getProductsByCategory(to.params.category)
     } catch (e) {
       this.error = true

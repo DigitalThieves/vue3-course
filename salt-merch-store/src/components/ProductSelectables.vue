@@ -6,7 +6,7 @@
       data-testid="selectable"
       class="selectable-product-sizes border text-center px-3 py-2"
       :class="sizeClass(size, i)"
-      @click="size.stock ? $emit('update:activeIndex', i) : null"
+      @click="size.stock ? $emit('update:active-index', i) : null"
     >
       {{ size.size }}
     </div>
@@ -18,7 +18,7 @@
       data-testid="selectable"
       class="selectable-product-colors border"
       :style="'background-color: ' + color.colorhex + ';'"
-      @click="$emit('update:activeIndex', i)"
+      @click="$emit('update:active-index', i)"
     />
   </template>
   <template v-else-if="selectablesType === 'images'">
@@ -26,9 +26,9 @@
       v-for="image, i in selectables"
       :key="'image-' + i"
       data-testid="selectable"
-      :src="require('@/assets/' + image)"
+      :src="image"
       class="selectable-product-imgs"
-      @click="$emit('update:activeIndex', i)"
+      @click="$emit('update:active-index', i)"
     >
   </template>
 </template>
@@ -55,7 +55,7 @@ export default {
       }
     },
   },
-  emits: [ 'update:activeIndex' ],
+  emits: [ 'update:active-index' ],
   methods: {
     sizeStyle (size, i) {
       return i === this.activeIndex ? 'background-color: black; color: white' : (

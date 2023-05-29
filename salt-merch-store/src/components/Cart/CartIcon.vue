@@ -17,7 +17,7 @@
       </svg>
     </router-link>
     <div
-      v-if="$store.state.cart.length"
+      v-if="$store.state.cart.cart.length"
       class="position-absolute cart-icon-number d-flex align-items-center justify-content-center text-center"
     >
       {{ amount_of_products }}
@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     amount_of_products () {
-      const cart = this.$store.state.cart
+      const cart = this.$store.state.cart.cart
       let amount = 0;
       for (let i = 0; i < cart.length; i++ )
         amount += cart[i].quantity

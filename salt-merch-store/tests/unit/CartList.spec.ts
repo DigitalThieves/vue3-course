@@ -1,12 +1,6 @@
-import CartList from '@/components/Cart/CartList'
-import { mount } from '@vue/test-utils'
+import CartList from '@/components/Cart/CartList.vue'
+import { mount, RouterLinkStub } from '@vue/test-utils'
 import store from '@/store/index'
-import router from '@/router'
-
-beforeEach(() => {
-  jest.clearAllMocks()
-})
-
 
 store.dispatch('addItem', {
     slug: 'baggie-salt-shopping-bag',
@@ -58,21 +52,27 @@ describe('Testing Cart List', () => {
   it('checks if cartList has one item with quantity 1', async () => {
     const wrapper = mount(CartList, {
       global: {
-        plugins: [store, router]
-      }
+        plugins: [ store ],
+        stubs: {
+          'router-link': RouterLinkStub
+        }
+      },
     })
     const listItems = wrapper.findAll('li')
     expect(listItems.length).toEqual(1)
     const listItem = listItems[0]
-    let liHTML = listItem.html()
-    expect(liHTML).toContain('Baggie Salt Shopping Bag / Baggie Black / <span class=\"text-capitalize\">one-size</span')
+    const liHTML = listItem.html()
+    expect(liHTML).toContain('Baggie Salt Shopping Bag / Baggie Black / <span class="text-capitalize">one-size</span')
     expect(liHTML).toContain('<span> Qty: 1</span>')
   })
 
   it('checks if cartList has one item with quantity 2', async () => {
     const wrapper = mount(CartList, {
       global: {
-        plugins: [store, router]
+        plugins: [store],
+        stubs: {
+          'router-link': RouterLinkStub
+        }
       }
     })
     const listItems = wrapper.findAll('li')
@@ -81,14 +81,17 @@ describe('Testing Cart List', () => {
     const buttons = listItem.findAll('[data-testid="addBtn"]')
     await buttons[0].trigger('click')
     const liHTML = listItem.html()
-    expect(liHTML).toContain('Baggie Salt Shopping Bag / Baggie Black / <span class=\"text-capitalize\">one-size</span')
+    expect(liHTML).toContain('Baggie Salt Shopping Bag / Baggie Black / <span class="text-capitalize">one-size</span')
     expect(liHTML).toContain('<span> Qty: 2</span>')
   })
 
   test('that cart list grows when adding a different item to list', async () => {
     const wrapper = mount(CartList, {
       global: {
-        plugins: [store, router]
+        plugins: [store],
+        stubs: {
+          'router-link': RouterLinkStub
+        }
       }
     })
     await store.dispatch('addItem', test_item_one)
@@ -110,5 +113,3 @@ describe('Testing Cart List', () => {
     expect(liHTML).toContain('<span> Qty: 4</span>')
   })
 })
-
-

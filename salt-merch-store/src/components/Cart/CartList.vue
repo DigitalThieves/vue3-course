@@ -17,7 +17,7 @@
             class="text-decoration-none text-dark"
           >
             <img
-              :src="require('@/assets/' + item.colors[0].images[0])"
+              :src="item.colors[0].images[0]"
               class="cart-list-img"
             >
             {{ item.title }} / {{ item.colors[0].color_name }} / 
@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     cartItems () {
-      const cart = this.$store.state.cart
+      const cart = this.$store.state.cart.cart
       return cart.length ? cart : false
     },
     titleSize () {
@@ -72,7 +72,6 @@ export default {
         case 'm':
         case 'l':
         case 'xl':
-          console.log('size is', this.size)
           return 'fs-3'
         default:
           return 'fs-6'
@@ -85,7 +84,6 @@ export default {
         case 'm':
         case 'l':
         case 'xl':
-          console.log('size is', this.size)
           return 'fs-6'
         default:
           return 'fs-12'

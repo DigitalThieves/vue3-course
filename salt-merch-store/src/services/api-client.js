@@ -1,37 +1,53 @@
-import products from '@/assets/db/products.json'
-import categories from '@/assets/db/categories.json'
-
 export default {
-  getProductBySlug: slug =>
-    new Promise(res =>
-      setTimeout(
-        () => res( products.filter(el => el.slug === slug )[0] ),
-        250
+  getProductBySlug: slug => fetch(`https://fakestoreapi.com/products/${slug}`)
+    .then(res=> res.json())
+    .then(pr => convertProduct(pr)),
+
+  getAllProducts: () => fetch('https://fakestoreapi.com/products/')
+    .then(res => res.json())
+    .then(data => data.map(
+        pr => convertProduct(pr)
       )
     ),
-  getAllProducts: () =>
-    new Promise(res =>
-      setTimeout(
-        () => res( products ),
-        250
+
+  getProductsByCategory: category => fetch(`https://fakestoreapi.com/products/category/${category}`)
+    .then(res=>res.json())
+    .then(data => {
+      const products = data.map(
+        pr => convertProduct(pr)
       )
-    ),
-  getProductsByCategory: category_slug =>
-    new Promise(res =>
-      setTimeout(
-        () => {
-          const cat_prod = products.filter(el => el.category === category_slug )
-          const category = categories.filter(el => el.category === category_slug )[0] 
-          res( { ...category, products: cat_prod } )
-        },
-        250
-      )
-    ),
-  getMessage:  () =>
-    new Promise(res =>
-      setTimeout(
-        () => res({ text: 'My man' }),
-        250
-      )
-    ),
+      return {
+        category,
+        products
+      }
+    }
+  ),
 }
+
+const convertProduct = pr => ({
+    ...pr,
+    slug: pr.id,
+    colors: [{
+      color_name: 'Black Melange',
+      colorhex: '#000',
+      sizes: [{
+        size: 'one-size',
+        stock: 3
+      }, {
+        size: 'two-size',
+        stock: 5
+      }],
+      images: [pr.image, pr.image, pr.image]
+    }, {
+      color_name: 'White Snow',
+      colorhex: '#fff',
+      sizes: [{
+        size: 'one-size',
+        stock: 3
+      }, {
+        size: 'two-size',
+        stock: 5
+      }],
+      images: [pr.image, pr.image, pr.image]
+    }]
+  })

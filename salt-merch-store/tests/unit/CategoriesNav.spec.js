@@ -1,12 +1,11 @@
 import CategoriesNav from '@/components/CategoriesNav'
 import { mount } from '@vue/test-utils'
-import router from '@/router'
 
 describe('CategoriesNav.vue', () => {
   it('Checks if CategoriesNav renders correct amount of selectables given type colors', async () => {
     const wrapper = mount(CategoriesNav, {
       global: {
-        plugins: [router],
+        stubs: ['router-link']
       },
       attrs: {
         class: 'hello'
@@ -17,7 +16,7 @@ describe('CategoriesNav.vue', () => {
   it('Checks if CategoriesNav renders correct amount of selectables given type images', async () => {
     const wrapper = mount(CategoriesNav, {
       global: {
-        plugins: [router],
+        stubs: ['router-link']
       },
     })
     expect(wrapper.find('[data-testid="root-w-attr"]').classes().length).toEqual(0)

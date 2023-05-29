@@ -1,112 +1,47 @@
-<!-- eslint-disable vue/no-use-v-if-with-v-for -->
-<template>
-  <div
-    v-if="isLoading"
-    class="py-5"
-  >
-    <h1 data-testid="loading">
-      Loading...
-    </h1>
-    <p>
-      Product: {{ $route.params.slug }}
-    </p>
-  </div>
-  <div
-    v-else-if="error"
-    class="py-5"
-  >
-    <h1 data-testid="error">
-      error: {{ error }}
-    </h1>
-  </div>
-  <div
-    v-else
-    class="container"
-  >
-    <div class="row text-left">
-      <div class="col-12">
-        <p class="text-uppercase fs-12 fw-semibold">
-          <router-link
-            class="text-decoration-none text-dark"
-            to="/"
-          >
-            SALT MERCH
-          </router-link> /
-          <router-link
-            class="text-decoration-none text-dark"
-            :to="'/categories/' + product.category"
-          >
-            {{ product.category }}
-          </router-link> /
-          <router-link
-            class="text-decoration-none text-dark"
-            :to="'/products/' + product.slug"
-          >
-            {{ product.title }}
-          </router-link>
-        </p>
-      </div>
-      <div class="col-4">
-        <transition-group
-          name="fade"
-          mode="out-in"
-          tag="div"
-        >
-          <img
-            v-for="image in [currentImage]"
-            :key="image"
-            :src="image"
-            class="selected-product-img"
-          >
-        </transition-group>
-        <br>
-        <br>
-        <product-selectables
-          v-model:activeIndex="imgIndex"
-          :selectables="currentImages"
-          selectables-type="images"
-        />
-      </div>
-      <div class="col-8">
-        <h1 data-testid="title">
-          {{ product.title }}
-        </h1>
-        <p>
-          {{ currentColor.color_name }} /
-          <span v-if="sizeIndex !== null && currentSize !== null && currentSize.stock"> Stock: {{ currentSize.stock }} </span>
-          <span v-else-if="sizeIndex !== null"> Out of stock </span>
-          <span v-else> No size chosen </span>
-        </p>
-        <hr class="my-3">
-        <product-selectables
-          v-model:activeIndex="colorIndex"
-          :selectables="product.colors"
-          selectables-type="colors"
-        />
-        <br>
-        <br>
-        <product-selectables
-          v-model:activeIndex="sizeIndex"
-          :selectables="currentColor.sizes"
-          selectables-type="sizes"
-        />
-        <br>
-        <br>
-        <button
-          class="px-5 py-3"
-          :disabled="sizeIndex == null"
-          @click="addItem"
-        >
-          Add {{ product.title }} To Cart
-        </button>
-        <hr class="my-3">
-        <div
-          data-testid="description"
-          v-html="product.description"
-        />
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+.py-5(v-if='isLoading')
+  h1(data-testid='loading') Loading...
+  p Product: {{ $route.params.slug }}
+.py-5(v-else-if='error')
+  h1(data-testid='error')
+    | error: {{ error }}
+.container(v-else-if="!isLoading && !error")
+  .row.text-left
+    .col-12
+      p.text-uppercase.fs-12.fw-semibold
+        router-link.text-decoration-none.text-dark(to="/") SALT MERCH
+        | /
+        router-link.text-decoration-none.text-dark(:to="'/categories/' + product.category") {{ ' ' + product.category }}
+        | /
+        router-link.text-decoration-none.text-dark(:to="'/products/' + product.slug") {{ ' ' + product.title }}
+    .col-12.col-md-6.col-lg-4
+      transition-group(name='fade', mode='out-in', tag='div')
+        img.selected-product-img(v-for='image, i in [currentImage]', :key='"image-"+i', :src='image')
+      br
+      br
+      product-selectables(
+        v-model:active-index="imgIndex"
+        :selectables="currentImages"
+        selectables-type="images"
+      )
+    .col-12.col-md-6.col-lg-8
+      h1(data-testid='title')
+        | {{ product.title }}
+      p {{ currentColor.color_name }} /
+        span(v-if='sizeIndex !== null && currentSize !== null && currentSize.stock')  Stock: {{ currentSize.stock }} 
+        span(v-else-if='sizeIndex !== null')  Out of stock 
+        span(v-else='')  No size chosen 
+      hr.my-3
+      product-selectables(v-model:active-index='colorIndex', :selectables='product.colors', selectables-type='colors')
+      br
+      br
+      product-selectables(v-model:active-index='sizeIndex', :selectables='currentColor.sizes', selectables-type='sizes')
+      br
+      br
+      button.px-5.py-3(:disabled='sizeIndex == null', @click='addItem')
+        | Add {{ product.title }} To Cart
+      hr.my-3
+      div(data-testid='description', v-html='product.description')
 </template>
 
 <script>
@@ -140,7 +75,7 @@ export default {
       return this.currentColor.images
     },
     currentImage () {
-      return require(`@/assets/${this.currentImages[this.imgIndex]}`)
+      return this.currentImages[this.imgIndex]
     },
     currentSize () {
       return this.currentColor.sizes[this.sizeIndex]

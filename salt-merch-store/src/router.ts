@@ -7,7 +7,7 @@ import { createRouter, createWebHistory } from 'vue-router';   // map from 'vue-
 import home from './pages/home.vue';
 import aboutsalt from './pages/about-salt.vue';
 import AltHeader from './components/AltHeader.vue';
-import SaltHeader from './components/SaltHeader.vue';
+import AppHeader from './components/AppHeader.vue';
 import collection from '@/pages/collection.vue';
 import products from '@/pages/products.vue';
 import categories from '@/pages/categories.vue';
@@ -19,7 +19,7 @@ const routes = [
     path: '/',
     components: {
       default: home,
-      header: SaltHeader,
+      header: AppHeader,
     },
     name: 'home'
   },
@@ -27,7 +27,7 @@ const routes = [
     path: '/collection',
     components: {
       default: collection,
-      header: SaltHeader,
+      header: AppHeader,
     },
     name: 'collection'
   },
@@ -35,7 +35,7 @@ const routes = [
     path: '/',
     components: {
       default: home,
-      header: SaltHeader,
+      header: AppHeader,
     },
     name: 'home'
   },
@@ -51,7 +51,7 @@ const routes = [
     path: '/products/:slug',
     components: {
       default: products,
-      header: SaltHeader,
+      header: AppHeader,
     },
     name: 'products'
   },
@@ -59,7 +59,7 @@ const routes = [
     path: '/categories/:category',
     components: {
       default: categories,
-      header: SaltHeader,
+      header: AppHeader,
     },
     name: 'categories'
   },
@@ -67,7 +67,7 @@ const routes = [
     path: '/cart',
     components: {
       default: cartpage,
-      header: SaltHeader,
+      header: AppHeader,
     },
     name: 'cartpage'
   },
