@@ -1,14 +1,22 @@
 export default {
   getProductBySlug: slug => fetch(`https://fakestoreapi.com/products/${slug}`)
     .then(res=> res.json())
-    .then(pr => convertProduct(pr)),
+    .then(pr => convertProduct(pr))
+    .catch(e => {
+      alert('something went wrong, check it out, please');
+      throw e
+    }),
 
   getAllProducts: () => fetch('https://fakestoreapi.com/products/')
     .then(res => res.json())
     .then(data => data.map(
         pr => convertProduct(pr)
       )
-    ),
+    )
+    .catch(e => {
+      alert('something went wrong, check it out, please');
+      throw e
+    }),
 
   getProductsByCategory: category => fetch(`https://fakestoreapi.com/products/category/${category}`)
     .then(res=>res.json())
