@@ -1,6 +1,5 @@
 import CollectionView from '@/components/CollectionView.vue'
 import { DOMWrapper, mount, RouterLinkStub } from '@vue/test-utils'
-import flushPromises from 'flush-promises'
 
 const prod1 = {
   slug: 'prod1',
@@ -94,7 +93,7 @@ it('should display image, title and price', () => {
   })
 })
 
-describe.only('Component should be able to filter and search', () => {
+describe('Component should be able to filter and search', () => {
   it.skip('should react appropiately to filter options', async () => {
     const wrapper = mount(CollectionView, {
       global: {
@@ -139,8 +138,7 @@ describe.only('Component should be able to filter and search', () => {
     })
     const search = wrapper.find('search-input-stub')
     expect(search.exists()).toBeTruthy()
-    // await (search.trigger as any)('search', '')
-    await wrapper.setData({ search_input: 'prod1' })
+    await (wrapper.findComponent('search-input-stub') as any).vm.$emit('search', 'prod1')
     const prods = wrapper.findAll('[data-testid="collection-product"]')
     expect(prods.length).toBe(2)
     prods.forEach((prod: DOMWrapper<Element>, i: number) => {

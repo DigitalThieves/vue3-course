@@ -43,23 +43,6 @@ export default {
   computed: {
     filteredCollection () {
       return this.collection.filter((prod) => {
-        // if (this.filter_options && this.filter_options.price) {
-        //   const price = Number.parseInt(prod.price)
-        //   if (
-        //     price < this.filter_options.price.min
-        //     || price > this.filter_options.price.max
-        //   )
-        //     return false
-        // }
-        // if (
-        //   this.filter_options && this.filter_options.color &&
-        //   prod.colors.findIndex(
-        //     col => col.color_name.like(
-        //       this.filter_options.color
-        //     )
-        //   ) < 0
-        // )
-          // return false
         if (this.search_input && this.search_input !== '')
           if (
             !this.searchIn((prod.title), (this.search_input))
@@ -72,7 +55,6 @@ export default {
   },
   methods: {
     search (data) {
-      console.log('search data is ', data)
       this.search_input = data
     },
     searchIn: (haystack, needle) => new RegExp(needle.toLowerCase()).test(haystack.toLowerCase())
